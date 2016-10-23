@@ -22,7 +22,19 @@ class CareStaff:
 class Doctor(CareStaff):
     def introduce(self):
         return super(Doctor, self).introduce() + "Doctor"
+    
+    def getCharts(patient):
+        return super(Doctor, self).getCharts(patient)
+    
+    def addSymptom(patient):
+        return super(Doctor, self).addSymptom(patient)
         
 class Nurse(CareStaff):
     def introduce(self):
         return super(Nurse, self).introduce() + "Nurse"
+    
+    def getCharts(patient):
+        return super(Nurse, self).getCharts(patient)
+    
+    def addSymptom(patient):
+        return super(Doctor, self).addSymptom(patient)

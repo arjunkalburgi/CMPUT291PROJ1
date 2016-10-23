@@ -33,26 +33,26 @@ Your project will be evaluated on the basis of 80% of the mark for implementing 
 
 You are given the following relational schema (which is similar to the schema for Assignment 2 and is based on the application description in Assignment 1).
 
-staff(staff_id, role, name, login, password )
-Staff information. role can be one of the following: 'D', 'N', 'A' - standing for "doctor", "nurse", and "administration", respectively. login and password are the login and the password required to authenticate as a user of the system.
-patients(hcno, name, age_group, address, phone, emg_phone)
-Patient information. hcno =  "health care number".
-charts(chart_id, hcno, adate, edate)
-Chart information. A chart with id chart_id is associated with each stay of a patient with health care number hcno in the hospital. adate is the date of admission to the hospital, and edate is the date of discharge from the hospital. chart_id is unique among all charts, and a patient can have several charts corresponding to several periods of staying in the hospital.
-symptoms(hcno, chart_id, staff_id, obs_date, symptom)
-Information about observed symptoms. A row in this table records information about an observed symptom symptom, which was observed by a care staff member (doctor or nurse) with staff_id on the date obs_date; the symptom was observed for a patient who is associated with a chart chart_id.
-diagnoses(hcno, chart_id, staff_id, ddate, diagnosis)
-Information about diagnoses. A row in this table records information about a diagnosis diagnosis that was made by a doctor with staff_id on the date ddate for a patient who is associated with a chart chart_id.
-medications(hcno, chart_id, staff_id, mdate, start_med, end_med, amount, drug_name)
-Information about medications. A row in this table records information about a drug drug_name that was prescribed by a doctor with staff_id on date mdate and to be taken by a patient who is associated with a chart chart_id, from the start date start_med to the end date end_med in the amount specified in amount.
-reportedallergies(hcno, drug_name)
-Information about drug allergies provided by a patient with health care number hcno
-drugs(drug_name, category)
-Drug category information.
-dosage(drug_name, age_group, sug_amount)
-Drug dosage information. A row gives the suggested amount sug_amount for a drug drug_name and an age group age_group.
-inferredallergies(alg, canbe_alg)
-Lists all pairs of drugs for which it is known that if someone is allergic to the drug alg, the person may also be allergic to the drug canbe_alg
++ staff(staff_id, role, name, login, password )
+  + Staff information. role can be one of the following: 'D', 'N', 'A' - standing for "doctor", "nurse", and "administration", respectively. login and password are the login and the password required to authenticate as a user of the system.
++ patients(hcno, name, age_group, address, phone, emg_phone)
+  + Patient information. hcno =  "health care number".
++ charts(chart_id, hcno, adate, edate)
+  + Chart information. A chart with id chart_id is associated with each stay of a patient with health care number hcno in the hospital. adate is the date of admission to the hospital, and edate is the date of discharge from the hospital. chart_id is unique among all charts, and a patient can have several charts corresponding to several periods of staying in the hospital.
++ symptoms(hcno, chart_id, staff_id, obs_date, symptom)
+  + Information about observed symptoms. A row in this table records information about an observed symptom symptom, which was observed by a care staff member (doctor or nurse) with staff_id on the date obs_date; the symptom was observed for a patient who is associated with a chart chart_id.
++ diagnoses(hcno, chart_id, staff_id, ddate, diagnosis)
+  + Information about diagnoses. A row in this table records information about a diagnosis diagnosis that was made by a doctor with staff_id on the date ddate for a patient who is associated with a chart chart_id.
++ medications(hcno, chart_id, staff_id, mdate, start_med, end_med, amount, drug_name)
+  + Information about medications. A row in this table records information about a drug drug_name that was prescribed by a doctor with staff_id on date mdate and to be taken by a patient who is associated with a chart chart_id, from the start date start_med to the end date end_med in the amount specified in amount.
++ reportedallergies(hcno, drug_name)
+  + Information about drug allergies provided by a patient with health care number hcno
++ drugs(drug_name, category)
+  + Drug category information.
++ dosage(drug_name, age_group, sug_amount)
+  + Drug dosage information. A row gives the suggested amount sug_amount for a drug drug_name and an age group age_group.
++ inferredallergies(alg, canbe_alg)
+  + Lists all pairs of drugs for which it is known that if someone is allergic to the drug alg, the person may also be allergic to the drug canbe_alg
 The SQL commands to create the tables of the system are given to you, and you must not change any table/column names since we will be testing your project with the given schema.
 
 ### Login Screen

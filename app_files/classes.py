@@ -11,15 +11,19 @@ class CareStaff:
     # should be given the option to select a chart. Once a chart is selected, all entries (symptoms, diagnoses, and medications) 
     # associated with that chart must be listed, and the result must be ordered by the date of the entries.
     def getCharts(self, patient): 
-        print "All Charts"
+        print("All Charts")
         pass
     # For a given patient and an open chart of the patient add an entry for symptoms. 
     # The date obs_date should be set to the current date and time.
     def addSymptom(self, patient):
-        print "Add symptom"
+        print("Add symptom")
         pass
 
 class Doctor(CareStaff):
+    def __init__(self, usr):
+        self.id = usr["staff_id"]
+        self.name = usr["name"]
+
     def introduce(self):
         return super(Doctor, self).introduce() + "Doctor"
     

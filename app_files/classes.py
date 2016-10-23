@@ -28,6 +28,25 @@ class Doctor(CareStaff):
     
     def addSymptom(self, patient):
         return super(Doctor, self).addSymptom(patient)
+    
+    # For a given patient and an open chart of the patient add an entry for diagnosis. 
+    # The date ddate should be set to the current date and time.
+    def addDiagnosis(patient): 
+        pass
+    
+    # For a given patient and an open chart of the patient add an entry for medications. The date mdate should 
+    # be set to the current date and time. Additional checks should be performed before adding the entry: 
+    # (1) if the prescribed amount for the patient is larger than the recommended amount sug_amount for that
+        # drug and the patient's age group, a warning should be issued that contains the information about recommended 
+        # amount for a patient for that age group, and the doctor should be given the choice to confirm his prescription 
+        # or to change the amount. 
+    # (2) If the patient could be allergic to the prescribed drug drug_name, a warning should be issued that contains 
+        # the information about the reported allergy; the warning should display the name of the drug that the patient 
+        # reported being allergic to, and, if that is not directly drug_name, the name of the drug D  should be dsiplayed,
+        # which the patient reported being allergic to and from which it can be "inferred" that the patient may also be 
+        # allergic to drug_name.
+    def addMedication(patient): 
+        pass
         
 class Nurse(CareStaff):
     def introduce(self):
@@ -38,3 +57,38 @@ class Nurse(CareStaff):
     
     def addSymptom(self, patient):
         return super(Doctor, self).addSymptom(patient)
+    
+    # Create a new chart for a patient at the time of admission to the hospital. At that point in time, the adate is filled 
+    # with the current date and time, and the edate is filled with a NULL value, indicating an "open" chart. Before creating
+    # a new chart, the system should check whether there is already an open chart for that patient, and if so, provide the 
+    # options to either close this chart before creating a new one, or not creating a new one. When creating a new chart, the
+    # system also must provide the functionality to add the patient information, if the patient information is not already in
+    # the system (from a previous stay in the hospital).
+    def newChart(patient):
+        pass
+    
+    # Close a chart when a patient is dismissed from the hospital. At that point in time, the edate is filled with the current 
+    # date and time, indicating that the chart is closed.
+    def closeChart(patient):
+        pass
+    
+class AdminStaff(): 
+    # Create a report, that lists for each doctor the name and the total amount of each drug that the doctor prescribed in a 
+    # specified period of time. (Drugs that he did not prescribe in that period of time should not be listed.)
+    def createDoctorAndDrugAmtReport(): 
+        pass
+    
+    # For each category of drugs, list the total amount prescribed for each drug in that category in a specified period of time.
+    # The report should also contain a total for each category.
+    def createDrugAmtInTimePeriodReport(start, end):
+        pass
+    
+    # List for a given diagnosis all possible medications that have been prescribed over time after that diagnosis (over all charts).
+    # The list should be ordered by the frequency of the medication for the given diagnosis.
+    def createMedicationForDiagnosisInTimePeriodReport(diagnosis, time): 
+        pass
+    
+    # List for a given drug all the diagnoses that have been made before prescribing the drug (over all charts). The list should be 
+    # ordered by the average amount of the drug prescribed for the diagnoses.
+    def createDiagnosesForDrugReport(drug):
+        pass

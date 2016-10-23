@@ -1,5 +1,8 @@
 import sys
 import functions
+import doctor
+import nurse
+import admin
 
 def onStart(): 
   username = input('Please login with your username: ')
@@ -7,11 +10,11 @@ def onStart():
   
   user = functions.getUser(username, password) # return obj of user info, or None if can't be found
   if user is not None: 
-    if user.role == 'D':
+    if user['role'] == 'D':
       doctor.flow(user)
-    if user.role == 'N':
+    if user['role'] == 'N':
       nurse.flow(user)
-    if user.rolw == 'A': 
+    if user['role'] == 'A': 
       admin.flow(user)
 
 onStart()

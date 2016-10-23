@@ -1,2 +1,2 @@
 def flow(user): 
-	print("let's do that admin")
+	print("let's do it - admin")

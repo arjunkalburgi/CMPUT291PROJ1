@@ -1,10 +1,10 @@
 import sys
-import functions
-import doctor
-import nurse
-import admin
+from . import functions
+from . import doctor
+from . import nurse
+from . import admin
 
-def onStart(): 
+def start(): 
   username = input('Please login with your username: ')
   password = input('And password: ')
   
@@ -16,5 +16,3 @@ def onStart():
       nurse.flow(user)
     if user['role'] == 'A': 
       admin.flow(user)
-
-onStart()

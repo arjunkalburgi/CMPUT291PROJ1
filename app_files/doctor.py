@@ -1,79 +1,80 @@
 from .classes import Doctor
+from database import *
 
-def getChartsFlow(doc): 
-	patient = input("Select a patient (hcno or name): ")
+def getChartsFlow(doc):
+	patient = raw_input("Select a patient (hcno): ")
 	returnobj = doc.getCharts(patient)
-	if returnobj == "no_patient": 
+	if returnobj == "no_patient":
 		print("That is not a patient in the database.")
 		getChartsFlow(doc)
-	else: 
+	else:
 		# show charts
 		print("charts")
 		pass
 
-def addSymptomsFlow(doc): 
-	patient = input("Select a patient (hcno or name): ")
-	symptom = input("Name the symptom:")
+def addSymptomsFlow(doc):
+	patient = raw_input("Select a patient (hcno): ")
+	symptom = raw_input("Name the symptom:")
 	returnobj = doc.addSymptom(patient, symptom)
-	if returnobj == "no_patient": 
+	if returnobj == "no_patient":
 		print("That is not a patient in the database.")
 		addSymptomsFlow(doc)
-	else: 
+	else:
 		print("Symptom has been added to the database.")
 
-def addDiagnosisFlow(doc): 
-	patient = input("Select a patient (hcno or name): ")
-	diagnosis = input("Name the diagnosis:")
+def addDiagnosisFlow(doc):
+	patient = raw_input("Select a patient (hcno): ")
+	diagnosis = raw_input("Name the diagnosis:")
 	returnobj = doc.addDiagnosis(patient, diagnosis)
-	if returnobj == "no_patient": 
+	if returnobj == "no_patient":
 		print("That is not a patient in the database.")
 		addDiagnosisFlow(doc)
-	else: 
+	else:
 		print("Diagnosis has been added to the database.")
 
 def addMedicationFlow(doc):
-	patient = input("Select a patient (hcno or name): ")
-	medication = input("Name the medication:")
+	patient = raw_input("Select a patient (hcno): ")
+	medication = raw_input("Name the medication:")
 	returnobj = doc.addMedication(patient, medication)
-	if returnobj == "no_patient": 
+	if returnobj == "no_patient":
 		print("That is not a patient in the database.")
 		addMedicationFlow(doc)
-	else: 
+	else:
 		print("Medication has been added to the database.")
 
-def flow(user): 
+def flow(user):
 
 	d = Doctor(user)
-	print("let's do it, ", d.name)	
+	print("let's do it, ", d.name)
 
 	while True:
 
-		action = input("\nWhat would you like to do?\n\
+		action = raw_input("\nWhat would you like to do?\n\
 		(1) Read a patient's chart\n \
 		(2) Report a patient's symptom\n \
 		(3) Report your diagnosis of a patient\n \
 		(4) Report your medication prescription to a patient\n \
 		(5) Logout\n")
-		
-		if action == "1": 
+
+		if action == "1":
 			# flow to get all charts for the patient
 			getChartsFlow(d)
 
 		elif action == "2":
-			# flow to get patient and insert symptom 
+			# flow to get patient and insert symptom
 			addSymptomsFlow(d)
 
-		elif action == "3": 
+		elif action == "3":
 			# flow to get patient and insert diagnosis
 			addDiagnosisFlow(d)
 
-		elif action == "4": 
+		elif action == "4":
 			# flow to get patient and insert medication
 			addMedicationFlow(d)
 
-		elif action == "5": 
+		elif action == "5":
 			# logout the user
 			break;
 
-		else: 
+		else:
 			print("That is not an option, please try again")

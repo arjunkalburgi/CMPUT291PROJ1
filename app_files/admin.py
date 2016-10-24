@@ -5,46 +5,46 @@ def listDrugAmtForEachDoctorFlow(adm):
 	print("listtttt")
 
 def listDrugAmtForEachCategoryFlow(adm):
-	start = input("What time would you like to begin your search with? ")
-	end = input("What time would you like to end your search with? ")
+	start = raw_input("What time would you like to begin your search with? ")
+	end = raw_input("What time would you like to end your search with? ")
 	returnobj = adm.listDrugAmtForEachCategory(start, end)
-	if returnobj == "bad_times": 
+	if returnobj == "bad_times":
 		print("Those times were unreadable, please try ____ format")
 		listDrugAmtForEachCategoryFlow(adm)
-	else: 
+	else:
 		print("listttt")
 
 def listMedicationsForDiagnosisFlow(adm):
-	diagnosis = input("Which diagnosis would you like to search? ")
+	diagnosis = raw_input("Which diagnosis would you like to search? ")
 	returnobj = adm.listMedicationsForDiagnosis(diagnosis)
-	if returnobj == "no_diagnosis": 
+	if returnobj == "no_diagnosis":
 		print("That diagnosis is not in the database")
-	else: 
+	else:
 		print("listttt")
 
 def listDiagnosisesForDrugFlow(adm):
-	drug = input("Which drug would you like to search? ")
+	drug = raw_input("Which drug would you like to search? ")
 	returnobj = adm.listDiagnosisesForDrug(drug)
-	if returnobj == "no_drug": 
+	if returnobj == "no_drug":
 		print("That diagnosis is not in the database")
-	else: 
+	else:
 		print("listttt")
 
-def flow(user): 
+def flow(user):
 
 	a = AdminStaff(user)
-	print("let's do it, ", a.name)	
+	print("let's do it, ", a.name)
 
 	while True:
 
-		action = input("\nWhat would you like to do?\n\
+		action = raw_input("\nWhat would you like to do?\n\
 		(1) List drug amounts prescribed by each doctor\n \
 		(2) List drug amounts prescribed recently by category\n \
 		(3) List medications used for a given diagnosis\n \
 		(4) List diagnoses that require a given drug\n \
 		(5) Logout\n")
-		
-		if action == "1": 
+
+		if action == "1":
 			listDrugAmtForEachDoctorFlow(a)
 			print("Your task has been completed.")
 
@@ -52,17 +52,17 @@ def flow(user):
 			listDrugAmtForEachCategoryFlow(a)
 			print("Your task has been completed.")
 
-		elif action == "3": 
+		elif action == "3":
 			listMedicationsForDiagnosisFlow(a)
 			print("Your task has been completed.")
 
-		elif action == "4": 
+		elif action == "4":
 			listDiagnosisesForDrugFlow(a)
 			print("Your task has been completed.")
 
-		elif action == "5": 
+		elif action == "5":
 			print("Thank you. Logging out.")
 			break;
 
-		else: 
+		else:
 			print("That is not an option, please try again")

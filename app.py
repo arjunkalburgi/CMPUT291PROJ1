@@ -1,13 +1,7 @@
 import sqlite3
 import os
-from app_files import login
+import app_files.login as login
+import app_files.database as database
 
-def howToRunSQLQueries(): 
-	conn = sqlite3.connect('database_files/hospital.db')
-	c = conn.cursor()
-	c.execute(' PRAGMA foreign_keys=ON; ')
-	c.execute('select * from patients')
-	c.fetchone()
-	c.fetchall()
-
+database.connectDB()
 login.start()

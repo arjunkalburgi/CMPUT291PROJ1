@@ -25,8 +25,8 @@ def getCurrentTime():
     return strftime("%Y-%m-%d %H:%M:%S")
 
 def getUser(username, password):
-	c.execute("SELECT * FROM staff WHERE login=? AND password=?", (username, password))
-	return c.fetchone()
+    c.execute("SELECT * FROM staff WHERE login=? AND password=?", (username, password))
+    return c.fetchone()
 
 def getChartsForPatient(patient):
     c.execute("SELECT * FROM patients, charts WHERE patients.hcno = charts.hcno AND name=? ORDER BY adate", patient)

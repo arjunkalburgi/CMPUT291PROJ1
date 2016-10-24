@@ -14,7 +14,7 @@ To see app class structure, see:
 ## Todo
 - [x] figure out how to run sql queries from python
 - [x] finish class structure
-- [ ] implement user flows (will call user actions)
+- [x] implement user flows (will call user actions)
 - [ ] implement user actions (actual class functions that will call sql queries)
 - [ ] implement sql queries (will access the db)
 

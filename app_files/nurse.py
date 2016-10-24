@@ -1,5 +1,45 @@
 from .classes import Nurse
 
+def getChartsFlow(nur): 
+	patient = input("Select a patient (hcno or name): ")
+	returnobj = nur.getCharts(patient)
+	if returnobj == "no_patient": 
+		print("That is not a patient in the database.")
+		getChartsFlow(nur)
+	else: 
+		# show charts
+		print("charts")
+
+def addSymptomsFlow(nur): 
+	patient = input("Select a patient (hcno or name): ")
+	symptom = input("Name the symptom:")
+	returnobj = nur.addSymptom(patient, symptom)
+	if returnobj == "no_patient": 
+		print("That is not a patient in the database.")
+		addSymptomsFlow(nur)
+	else: 
+		print("Symptom has been added to the database.")
+
+def newChartFlow(nur): 
+	patient = input("Select a patient (hcno or name): ")
+	returnobj = nur.newChart(patient)
+	if returnobj == "no_patient": 
+		print("That is not a patient in the database.")
+		newChartFlow(nur)
+	else: 
+		print("A new chart has been created in the database.")
+
+def closeChartFlow(nur):
+	patient = input("Select a patient (hcno or name): ")
+	returnobj = nur.newChart(patient)
+	if returnobj == "no_patient": 
+		print("That is not a patient in the database.")
+		newChartFlow(nur)
+	elif returnobj == "no_chart": 
+		print("There is no open chart for this patient.")
+	else: 
+		print("The chart for this patient has been closed.")
+
 def flow(user): 
 
 	n = Nurse(user)
@@ -16,19 +56,19 @@ def flow(user):
 		
 		if action == "1": 
 			# flow to get the patient for the chart
-			print("Your task has been completed.")
+			getChartsFlow(n)
 
 		elif action == "2":
 			# flow to get patient and insert symptom 
-			print("Your task has been completed.")
+			addSymptomsFlow(n)
 
 		elif action == "3": 
 			# flow to get patient and insert diagnosis
-			print("Your task has been completed.")
+			newChartFlow(n)
 
 		elif action == "4": 
 			# flow to get patient and insert medication
-			print("Your task has been completed.")
+			closeChartFlow(n)
 
 		elif action == "5": 
 			# logout the user

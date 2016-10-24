@@ -1,5 +1,35 @@
 from .classes import AdminStaff
 
+def listDrugAmtForEachDoctorFlow(adm):
+	returnobj = adm.listDrugAmtForEachDoctor()
+	print("listtttt")
+
+def listDrugAmtForEachCategoryFlow(adm):
+	start = input("What time would you like to begin your search with? ")
+	end = input("What time would you like to end your search with? ")
+	returnobj = adm.listDrugAmtForEachCategory(start, end)
+	if returnobj == "bad_times": 
+		print("Those times were unreadable, please try ____ format")
+		listDrugAmtForEachCategoryFlow(adm)
+	else: 
+		print("listttt")
+
+def listMedicationsForDiagnosisFlow(adm):
+	diagnosis = input("Which diagnosis would you like to search? ")
+	returnobj = adm.listMedicationsForDiagnosis(diagnosis)
+	if returnobj == "no_diagnosis": 
+		print("That diagnosis is not in the database")
+	else: 
+		print("listttt")
+
+def listDiagnosisesForDrugFlow(adm):
+	drug = input("Which drug would you like to search? ")
+	returnobj = adm.listDiagnosisesForDrug(drug)
+	if returnobj == "no_drug": 
+		print("That diagnosis is not in the database")
+	else: 
+		print("listttt")
+
 def flow(user): 
 
 	a = AdminStaff(user)
@@ -15,23 +45,22 @@ def flow(user):
 		(5) Logout\n")
 		
 		if action == "1": 
-			# flow to get the patient for the chart
+			listDrugAmtForEachDoctorFlow(a)
 			print("Your task has been completed.")
 
 		elif action == "2":
-			# flow to get patient and insert symptom 
+			listDrugAmtForEachCategoryFlow(a)
 			print("Your task has been completed.")
 
 		elif action == "3": 
-			# flow to get patient and insert diagnosis
+			listMedicationsForDiagnosisFlow(a)
 			print("Your task has been completed.")
 
 		elif action == "4": 
-			# flow to get patient and insert medication
+			listDiagnosisesForDrugFlow(a)
 			print("Your task has been completed.")
 
 		elif action == "5": 
-			# logout the user
 			print("Thank you. Logging out.")
 			break;
 

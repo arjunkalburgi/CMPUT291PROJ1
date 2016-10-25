@@ -17,6 +17,7 @@ To see app class structure, see:
 - [x] implement user flows (will call user actions)
 - [ ] implement user actions (actual class functions that will call sql queries)
 - [ ] implement sql queries (will access the db)
+- [ ] login encryption
 
 ## Full Spec
 https://eclass.srv.ualberta.ca/mod/page/view.php?id=2065436

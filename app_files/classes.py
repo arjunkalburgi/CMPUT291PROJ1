@@ -90,22 +90,36 @@ class AdminStaff():
         self.id = usr["staff_id"]
         self.name = usr["name"]
 
-    # Create a report, that lists for each doctor the name and the total amount of each drug that the doctor prescribed in a
-    # specified period of time. (Drugs that he did not prescribe in that period of time should not be listed.)
-    def listDrugAmtForEachDoctor(self):
-        pass
+    def listDrugAmtForEachDoctor(self, start, end):
+        print 'Report: Drug Amount Prescribed For Each Doctor Between ' + start + ' and ' + end + ':'
+        result = drugAmountForEachDoctor(start, end)
+        for idx, row in enumerate(result):
+            print '-----------------------'
+            printRow(row)
 
-    # For each category of drugs, list the total amount prescribed for each drug in that category in a specified period of time.
-    # The report should also contain a total for each category.
     def listDrugAmtForEachCategory(self, start, end):
-        pass
+        print 'Report Part 1: Drug Amount Prescribed For Each Category Between ' + start + ' and ' + end
+        result = drugAmountForEachCategory(start, end)
+        for idx, row in enumerate(result):
+            print '-----------------------'
+            printRow(row)
+        print '-------------------------------------------------'
+        print 'Report Part 2: Total Amount Prescribed For Each Category Between ' + start + ' and ' + end
+        result = totalAmountForEachCategory(start, end)
+        for idx, row in enumerate(result):
+            print '-----------------------'
+            printRow(row)
 
-    # List for a given diagnosis all possible medications that have been prescribed over time after that diagnosis (over all charts).
-    # The list should be ordered by the frequency of the medication for the given diagnosis.
     def listMedicationsForDiagnosis(self, diagnosis):
-        pass
+        print 'Report: Drugs Prescribed to Treat ' + diagnosis
+        result = listMedicationsForDiagnosis(diagnosis)
+        for idx, row in enumerate(result):
+            print '-----------------------'
+            printRow(row)
 
-    # List for a given drug all the diagnoses that have been made before prescribing the drug (over all charts). The list should be
-    # ordered by the average amount of the drug prescribed for the diagnoses.
-    def listDiagnosisesForDrug(self, drug):
-        pass
+    def listDiagnosesMadeBeforePrescribingDrug(self, drug_name):
+        print 'Report: Diagnoses Made Before Prescribing ' + drug_name
+        result = listDiagnosesMadeBeforePrescribingDrug(drug_name)
+        for idx, row in enumerate(result):
+            print '-----------------------'
+            printRow(row)

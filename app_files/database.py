@@ -91,3 +91,23 @@ def createNewChartForPatient(hcno):
 def closeChartWithId(chart_id):
     c.execute("UPDATE charts SET edate=? WHERE chart_id=?", (getCurrentTime(), chart_id))
     conn.commit()
+
+def drugAmountForEachDoctor(start, end):
+    c.execute("SELECT name as DoctorName, drug_name, SUM(amount) as total_amount FROM staff, medications WHERE staff.staff_id = medications.staff_id GROUP BY name, drug_name AND start_med > ? AND start_med < ?", (start, end))
+    return c.fetchall()
+
+def drugAmountForEachCategory(start, end):
+    c.execute("SELECT category, drugs.drug_name, SUM(amount) as amount FROM drugs, medications WHERE drugs.drug_name = medications.drug_name AND mdate > ? AND mdate < ? GROUP BY category, drugs.drug_name", (start, end))
+    return c.fetchall()
+
+def totalAmountForEachCategory(start, end):
+    c.execute("SELECT category, SUM(amount) as total FROM drugs, medications WHERE drugs.drug_name = medications.drug_name AND mdate > ? AND mdate < ? GROUP BY category", (start, end))
+    return c.fetchall()
+
+def listMedicationsForDiagnosis(diagnosis):
+    c.execute("SELECT drug_name, COUNT(*) as frequency FROM diagnoses, medications WHERE diagnoses.chart_id = medications.chart_id AND diagnosis=? GROUP BY drug_name ORDER BY COUNT(*)", (diagnosis,))
+    return c.fetchall()
+
+def listDiagnosesMadeBeforePrescribingDrug(drug_name):
+    c.execute("SELECT DISTINCT diagnosis FROM diagnoses, medications WHERE diagnoses.chart_id = medications.chart_id AND ddate < mdate AND drug_name=?", (drug_name,))
+    return c.fetchall()

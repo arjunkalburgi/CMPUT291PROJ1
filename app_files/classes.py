@@ -12,6 +12,7 @@ class CareStaff:
     def introduce(self):
           return "I'm a "
 
+    # Doctor Q1
     def getCharts(self, patient):
         print 'Charts for patient with health care number ' + patient + ':'
         charts = getChartsForPatient(patient)
@@ -22,6 +23,7 @@ class CareStaff:
             print 'Chart ' + str(idx + 1) + ':'
             printRow(row)
 
+    # Doctor Q1
     def printChartEntries(self, patient, chart_id):
         symptoms = symptomsForPatientAndChart(patient, chart_id)
         diagnoses = diagnosesForPatientAndChart(patient, chart_id)
@@ -36,6 +38,7 @@ class CareStaff:
             print 'Medication ' + str(idx + 1) + ':'
             printRow(row)
 
+    # Doctor Q2
     def addSymptom(self, hcno, chart_id, staff_id, symptom):
         addSymptomToChart(hcno, chart_id, staff_id, symptom)
 

@@ -1,6 +1,5 @@
 import sys
 import sqlite3
-from classes import *
 from time import strftime
 
 conn = None # global for db connection
@@ -29,19 +28,19 @@ def getUser(username, password):
     return c.fetchone()
 
 def getChartsForPatient(patient):
-    c.execute("SELECT * FROM patients, charts WHERE patients.hcno = charts.hcno AND name=? ORDER BY adate", patient)
+    c.execute("SELECT * FROM patients, charts WHERE patients.hcno = charts.hcno AND patients.hcno=? ORDER BY adate", (patient,))
     return c.fetchall()
 
 def symptomsForPatientAndChart(hcno, chart_id):
-    c.execute("SELECT * FROM symptoms WHERE hcno=? AND chart_id=?", (hcno, chart_id))
+    c.execute("SELECT * FROM symptoms WHERE hcno=? AND chart_id=? ORDER BY obs_date", (hcno, chart_id))
     return c.fetchall()
 
 def diagnosesForPatientAndChart(hcno, chart_id):
-    c.execute("SELECT * FROM diagnoses WHERE hcno=? AND chart_id=?", (hcno, chart_id))
+    c.execute("SELECT * FROM diagnoses WHERE hcno=? AND chart_id=? ORDER BY ddate", (hcno, chart_id))
     return c.fetchall()
 
 def medicationsForPatientAndChart(hcno, chart_id):
-    c.execute("SELECT * FROM medications WHERE hcno=? AND chart_id=?", (hcno, chart_id))
+    c.execute("SELECT * FROM medications WHERE hcno=? AND chart_id=? ORDER BY mdate", (hcno, chart_id))
     return c.fetchall()
 
 def addSymptomToChart(hcno, chart_id, staff_id, symptom):
@@ -55,6 +54,10 @@ def addDiagnosisToChart(hcno, chart_id, staff_id, diagnosis):
 def isMedicationAmountValid(drug_name, amount, age_group):
     c.execute("SELECT * FROM dosage WHERE drug_name=? AND age_group=? AND sug_amount >= ?", (drug_name, age_group, amount))
     return c.fetchone() != None
+
+def getValidMedicationAmount(drug_name, age_group):
+    c.execute("SELECT * FROM dosage WHERE drug_name=? AND age_group=?", (drug_name, age_group))
+    return c.fetchone()
 
 def isPatientAllergicToDrug(hcno, drug_name):
     c.execute("SELECT * FROM drugs WHERE hcno=? AND drug_name=?", (hcno, drug_name))

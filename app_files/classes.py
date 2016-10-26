@@ -1,3 +1,4 @@
+from .database import * 
 from abc import ABCMeta, abstractmethod
 
 class CareStaff:
@@ -11,13 +12,22 @@ class CareStaff:
     # should be given the option to select a chart. Once a chart is selected, all entries (symptoms, diagnoses, and medications) 
     # associated with that chart must be listed, and the result must be ordered by the date of the entries.
     def getCharts(self, patient): 
+        result = getChartsForPatient(patient)
         print("All Charts")
-        pass
+        if result != "blah": 
+            return result # probably want to format this 
+        else: 
+            return "no_patient"
+
     # For a given patient and an open chart of the patient add an entry for symptoms. 
     # The date obs_date should be set to the current date and time.
     def addSymptom(self, patient, symptom):
+        # result = symptomsForPatientAndChart(patient)
         print("Add symptom")
-        pass
+        if result != "blah": 
+            return result # probably want to format this 
+        else: 
+            return "no_patient"
 
 class Doctor(CareStaff):
     def __init__(self, usr):

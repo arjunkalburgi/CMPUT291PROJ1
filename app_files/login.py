@@ -1,14 +1,26 @@
 import sys
-from . import functions
+from . import database
 from . import doctor
 from . import nurse
 from . import admin
+
+def encrypt(s): 
+	r = ""
+	for char in s: 
+		r = r + chr(ord(char) + 2)
+	return r
+
+def decrypt(s): 
+	r = ""
+	for char in s: 
+		r = r + chr(ord(char) - 2)
+	return r
 
 def start():
 	username = raw_input('Please login with your username: ')
 	password = raw_input('And password: ')
 
-	user = functions.getUser(username, password) # return obj of user info, or None if can't be found
+	user = functions.getUser(encrypt(username), encrypt(password)) # return obj of user info, or None if can't be found
 	if user is not None:
 		if user['role'] == 'D':
 			doctor.flow(user)
@@ -17,5 +29,5 @@ def start():
 		if user['role'] == 'A':
 			admin.flow(user)
 	else:
-		print 'Invalid username or password! Please try again'
+		print('Invalid username or password! Please try again')
 		start()

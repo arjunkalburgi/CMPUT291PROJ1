@@ -1,5 +1,5 @@
 from .classes import Doctor
-from database import *
+from .database import *
 
 def getChartsFlow(doc):
 	patient = raw_input("Select a patient (hcno): ")
@@ -78,3 +78,6 @@ def flow(user):
 
 		else:
 			print("That is not an option, please try again")
+
+	print("Bye")
+	start()

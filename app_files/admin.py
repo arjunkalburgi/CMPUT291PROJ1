@@ -66,3 +66,6 @@ def flow(user):
 
 		else:
 			print("That is not an option, please try again")
+
+	print("Bye")
+	start()

@@ -1,8 +1,8 @@
 import sys
 from .database import getUser
-import doctor
-import nurse 
-import admin
+from doctor import flow as d_flow
+from nurse import flow as n_flow
+from admin import flow as a_flow
 
 def encrypt(s):
 	# r = ""
@@ -24,11 +24,11 @@ def start():
 	user = getUser(encrypt(username), encrypt(password)) # return obj of user info, or None if can't be found
 	if user is not None:
 		if user['role'] == 'D':
-			doctor.flow(user)
+			d_flow(user)
 		if user['role'] == 'N':
-			nurse.flow(user)
+			n_flow(user)
 		if user['role'] == 'A':
-			admin.flow(user)
+			a_flow(user)
 	else:
 		print('Invalid username or password! Please try again')
 		start()

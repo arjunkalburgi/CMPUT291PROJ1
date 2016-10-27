@@ -63,10 +63,10 @@ def flow(user):
 	print("let's do it, ", d.name)
 
 	# select a patient and show their charts
-	patient = getChartsFlow(doc)
+	patient = getChartsFlow(d)
 	
 	# select chart 
-	chartId = selectChart(doc, patient)
+	chartId = selectChart(d, patient)
 	print(chartId)
 
 	while True:

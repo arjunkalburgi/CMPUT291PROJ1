@@ -17,7 +17,7 @@ def listMedicationsForDiagnosisFlow(adm):
 
 def listDiagnosisesForDrugFlow(adm):
 	drug = raw_input("Which drug would you like to search? ")
-	if not adm.listDiagnosisesForDrug(drug):
+	if not adm.listDiagnosesMadeBeforePrescribingDrug(drug):
 		print("That drug is not in the database")
 
 def flow(user):

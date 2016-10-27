@@ -105,7 +105,7 @@ def totalAmountForEachCategory(start, end):
     return c.fetchall()
 
 def listMedicationsForDiagnosis(diagnoses):
-    c.execute("SELECT drug_name, COUNT(*) as frequency FROM diagnoses, medications WHERE diagnoses.chart_id = medications.chart_id AND diagnoses=? GROUP BY drug_name ORDER BY COUNT(*)", (diagnoses,))
+    c.execute("SELECT drug_name, COUNT(*) as frequency FROM diagnoses, medications WHERE diagnoses.chart_id = medications.chart_id AND diagnoses=? GROUP BY drug_name ORDER BY COUNT(*)", diagnoses)
     return c.fetchall()
 
 def listDiagnosesMadeBeforePrescribingDrug(drug_name):

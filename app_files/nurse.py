@@ -3,9 +3,9 @@ from . import database as db
 # from .login import start
 
 def getChartsFlow(nur): 
-	patient = raw_input("What patient are you working with today? (hcno or 'new')")
+	patient = raw_input("What patient are you working with today? (hcno or 'new') ")
 	if patient == "new": 
-		nur.newChart(raw_input("Patient HCNO: "), raw_input("Patient name: "), raw_input("Patient age group: "), raw_input("Patient address: "), raw_input("Patient phone number: "), raw_input("Patient emergency number: "))
+		patient = nur.newChart(raw_input("Patient HCNO: "), raw_input("Patient name: "), raw_input("Patient age group: "), raw_input("Patient address: "), raw_input("Patient phone number: "), raw_input("Patient emergency number: "))
 	else: 
 		returnobj = nur.getCharts(patient)
 		if returnobj == "no_patient":
@@ -20,7 +20,7 @@ def selectChart(nur, patient):
 			# return open chart's chart ID
 
 	while(True):
-		chartId = raw_input("Which chart would you like to open? (type chart's id or 'new')")
+		chartId = raw_input("Which chart would you like to open? (type chart's id or 'new') ")
 		if chartId == "new": 
 			newChartFlow(nur, patient)
 		else: 
@@ -36,7 +36,7 @@ def newChartFlow(nur, patient):
 	# NEED CHART ID
 
 def addSymptomsFlow(nur, patient, chart):
-	symptom = raw_input("Name the symptom:")
+	symptom = raw_input("Name the symptom: ")
 	nur.addSymptom(patient, chart, nur.id, symptom)
 	print("Symptom has been added to the database.")
 
@@ -60,10 +60,10 @@ def main_nurse(n):
 		(3) Logout\n")
 
 		if action == "1":
-			addSymptomsFlow(n) # flow to get patient and insert symptom
+			addSymptomsFlow(n, patient, chartId) # flow to get patient and insert symptom
 
 		elif action == "2":
-			closeChartFlow(n) # flow to get patient and insert medication
+			closeChartFlow(n, chartId) # flow to get patient and insert medication
 
 		elif action == "3":
 			# logout the user

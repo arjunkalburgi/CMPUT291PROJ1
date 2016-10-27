@@ -28,7 +28,7 @@ class CareStaff:
         symptoms = symptomsForPatientAndChart(patient, chart_id)
         diagnoses = diagnosesForPatientAndChart(patient, chart_id)
         medications = medicationsForPatientAndChart(patient, chart_id)
-        printed = false
+        printed = False
         for idx, row in enumerate(symptoms):
             print 'Symptom ' + str(idx + 1) + ':'
             printRow(row)
@@ -38,7 +38,7 @@ class CareStaff:
         for idx, row in enumerate(medications):
             print 'Medication ' + str(idx + 1) + ':'
             printRow(row)
-            printed = true
+            printed = True
         return printed
 
 

@@ -1,6 +1,6 @@
 from .classes import Nurse
 from . import database as db
-from .login import start
+# from .login import start
 
 def getChartsFlow(nur): 
 	patient = raw_input("What patient are you working with today? (hcno or 'new')")

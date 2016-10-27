@@ -15,7 +15,8 @@ def getChartsFlow(nur):
 
 def selectChart(nur, patient): 
 	if nur.checkIfPatientHasOpenChart(patient): 
-		if raw_input("This patient already has an open chart, would you like to open it (y or n)? ") == "y"
+		if raw_input("This patient already has an open chart, would you like to open it (y or n)? ") == "y":
+			pass
 			# return open chart's chart ID
 
 	while(True) {
@@ -30,6 +31,7 @@ def selectChart(nur, patient):
 	}
 
 def newChartFlow(nur, patient):
+	pass
 	# way to get patient info
 	# newChart(self, hcno, name, age_group, address, phone, emg_phone):
 	# NEED CHART ID
@@ -53,7 +55,6 @@ def main_nurse(n):
 
 	action = ""
 	while True:
-
 		action = raw_input("\nWhat would you like to do with this chart?\n\
 		(1) Report this patient's symptom\n \
 		(2) Close the patient's chart\n \

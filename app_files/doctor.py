@@ -11,7 +11,7 @@ def getChartsFlow(doc):
 
 def selectChart(doc, patient): 
 	chartId = raw_input("Which chart would you like to open? (select id)")
-	if !doc.printChartEntries(patient, chartId): 
+	if not doc.printChartEntries(patient, chartId): 
 		print("There was a problem, please type the chartid.")
 		selectChart(doc, patient)
 	return chartId

@@ -12,12 +12,12 @@ def listDrugAmtForEachCategoryFlow(adm):
 
 def listMedicationsForDiagnosisFlow(adm):
 	diagnosis = raw_input("Which diagnosis would you like to search? ")
-	if !adm.listMedicationsForDiagnosis(diagnosis):
+	if not adm.listMedicationsForDiagnosis(diagnosis):
 		print("That diagnosis is not in the database")
 
 def listDiagnosisesForDrugFlow(adm):
 	drug = raw_input("Which drug would you like to search? ")
-	if !adm.listDiagnosisesForDrug(drug):
+	if not adm.listDiagnosisesForDrug(drug):
 		print("That drug is not in the database")
 
 def flow(user):

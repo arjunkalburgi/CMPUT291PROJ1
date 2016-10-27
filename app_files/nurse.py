@@ -23,7 +23,7 @@ def selectChart(nur, patient):
 		if chartId == "new": 
 			newChartFlow(nur, patient)
 		else: 
-			if !nur.printChartEntries(patient, chartId): 
+			if not nur.printChartEntries(patient, chartId): 
 				print("There was a problem, please type the chartid.")
 			else: 
 				return chartId

@@ -19,7 +19,7 @@ def selectChart(nur, patient):
 			pass
 			# return open chart's chart ID
 
-	while(True) {
+	while(True):
 		chartId = raw_input("Which chart would you like to open? (type chart's id or 'new')")
 		if chartId == "new": 
 			newChartFlow(nur, patient)
@@ -28,7 +28,6 @@ def selectChart(nur, patient):
 				print("There was a problem, please type the chartid.")
 			else: 
 				return chartId
-	}
 
 def newChartFlow(nur, patient):
 	pass

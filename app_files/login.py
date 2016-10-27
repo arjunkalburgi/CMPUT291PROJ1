@@ -1,8 +1,8 @@
 import sys
 from .database import getUser
-from doctor import flow as d_flow
-from nurse import flow as n_flow
-from admin import flow as a_flow
+from .doctor import flow as d_flow
+from .nurse import flow as n_flow
+from .admin import flow as a_flow
 
 def encrypt(s):
 	# r = ""

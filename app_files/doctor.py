@@ -3,17 +3,17 @@ from . import database as db
 # from .login import start
 
 def getChartsFlow(doc): 
-	patient = raw_input("What patient are you working with today? (hcno)")
+	patient = raw_input("What patient are you working with today? (hcno) ")
 	returnobj = doc.getCharts(patient)
 	if returnobj == "no_patient":
-		print("That is not a patient's hcno that we have registered. Please use hcno for the patient.")
+		print("That is not a patient's hcno that we have registered. Please use hcno for the patient. ")
 		patient = getChartsFlow(doc)
 	return patient
 
 def selectChart(doc, patient): 
-	chartId = raw_input("Which chart would you like to open? (select id)")
+	chartId = raw_input("Which chart would you like to open? (select id) ")
 	if not doc.printChartEntries(patient, chartId): 
-		print("There was a problem, please type the chartid.")
+		print("There was a problem, please type the chartid. ")
 		selectChart(doc, patient)
 	return chartId
 
@@ -78,13 +78,13 @@ def flow(user):
 		(4) Logout\n")
 
 		if action == "1":
-			addSymptomsFlow(d) # flow to get patient and insert symptom
+			addSymptomsFlow(d, patient, chartId) # flow to get patient and insert symptom
 
 		elif action == "2":
-			addDiagnosisFlow(d) # flow to get patient and insert diagnosis
+			addDiagnosisFlow(d, patient, chartId) # flow to get patient and insert diagnosis
 
 		elif action == "3":
-			addMedicationFlow(d) # flow to get patient and insert medication
+			addMedicationFlow(d, patient, chartId) # flow to get patient and insert medication
 
 		elif action == "4":
 			# logout the user

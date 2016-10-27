@@ -41,7 +41,7 @@ def addSymptomsFlow(nur, patient, chart):
 	print("Symptom has been added to the database.")
 
 def closeChartFlow(nur, chart):
-	nur.closeChart(chart):	
+	nur.closeChart(chart)
 	print("The chart for this patient has been closed.")
 
 def main_nurse(n):

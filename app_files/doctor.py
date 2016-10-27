@@ -4,35 +4,24 @@ def getChartsFlow(doc):
 	patient = raw_input("What patient are you working with today? (hcno)")
 	returnobj = doc.getCharts(patient)
 	if returnobj == "no_patient":
-		print("That is not a patient in the database. Please use hcno.")
-		getChartsFlow(doc)
-	else:
-		print("charts")
+		print("That is not a patient's hcno that we have registered. Please use hcno for the patient.")
+		patient = getChartsFlow(doc)
 	return patient
 
 def selectChart(doc, patient): 
 	chartId = raw_input("Which chart would you like to open? (select id)")
-	returnobj = doc.openCharts(patient, chartId)
-	if returnobj == "no_chart": 
-		print("That is not a chart id, please select again.")
-		doc.getCharts(patient)
-		selectChart(doc, patient)
-	else: 
-		print("chart!")
-	return returnobj
+	if !doc.printChartEntries(patient, chartId): 
+		print("There was a problem, please type the chartid.")
+	return chartId
 
 def addSymptomsFlow(doc, patient, chart):
 	symptom = raw_input("Name the symptom:")
-	returnobj = doc.addSymptom(patient, symptom)
-	# if returnobj == "no_patient":
-	# 	print("That is not a patient in the database.")
-	# 	addSymptomsFlow(doc)
-	# else:
+	doc.addSymptom(patient, chart, doc.id, symptom)
 	print("Symptom has been added to the database.")
 
 def addDiagnosisFlow(doc, patient, chart):
 	diagnosis = raw_input("Name the diagnosis:")
-	returnobj = doc.addDiagnosis(patient, diagnosis)
+	returnobj = doc.addDiagnosis(patient, chart, doc.id, diagnosis)
 	if returnobj == "no_patient":
 		print("That is not a patient in the database.")
 		addDiagnosisFlow(doc)
@@ -58,7 +47,7 @@ def flow(user):
 	
 	# select chart 
 	chartId = selectChart(doc, patient)
-	print("chart id")
+	print(chartId)
 
 	while True:
 

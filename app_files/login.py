@@ -2,10 +2,11 @@ import sys
 from .database import getUser
 
 def encrypt(s):
-	r = ""
-	for char in s:
-		r = r + chr(ord(char) + 2)
-	return r
+	# r = ""
+	# for char in s:
+	# 	r = r + chr(ord(char) + 2)
+	# return r
+	return s
 
 def decrypt(s):
 	r = ""

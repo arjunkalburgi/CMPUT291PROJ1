@@ -47,8 +47,8 @@ def addSymptomToChart(hcno, chart_id, staff_id, symptom):
     c.execute("INSERT INTO symptoms VALUES (?,?,?,?,?)", (hcno, chart_id, staff_id, getCurrentTime(), symptom))
     conn.commit()
 
-def addDiagnosisToChart(hcno, chart_id, staff_id, diagnosis):
-    c.execute("INSERT INTO diagnosis VALUES (?,?,?,?,?)", (hcno, chart_id, staff_id, getCurrentTime(), diagnosis))
+def addDiagnosisToChart(hcno, chart_id, staff_id, diagnoses):
+    c.execute("INSERT INTO diagnoses VALUES (?,?,?,?,?)", (hcno, chart_id, staff_id, getCurrentTime(), diagnoses))
     conn.commit()
 
 def isMedicationAmountValid(drug_name, amount, age_group):
@@ -69,11 +69,11 @@ def inferredAllergy(hcno, drug_name):
     return c.fetchone()
 
 def addMedicationToChart(hcno, chart_id, staff_id, start_med, end_med, drug_name):
-    c.execute("INSERT INTO diagnosis VALUES (?,?,?,?,?,?,?,?)", (hcno, chart_id, staff_id, getCurrentTime(), start_med, end_med, drug_name))
+    c.execute("INSERT INTO diagnoses VALUES (?,?,?,?,?,?,?,?)", (hcno, chart_id, staff_id, getCurrentTime(), start_med, end_med, drug_name))
     conn.commit()
 
 def createPatient(hcno, name, age_group, address, phone, emg_phone):
-    c.execute("INSERT INTO diagnosis VALUES (?,?,?,?,?,?)", (hcno, name, age_group, address, phone, emg_phone))
+    c.execute("INSERT INTO diagnoses VALUES (?,?,?,?,?,?)", (hcno, name, age_group, address, phone, emg_phone))
     conn.commit()
 
 def isChartOpenForPatient(hcno):
@@ -104,10 +104,10 @@ def totalAmountForEachCategory(start, end):
     c.execute("SELECT category, SUM(amount) as total FROM drugs, medications WHERE drugs.drug_name = medications.drug_name AND mdate > ? AND mdate < ? GROUP BY category", (start, end))
     return c.fetchall()
 
-def listMedicationsForDiagnosis(diagnosis):
-    c.execute("SELECT drug_name, COUNT(*) as frequency FROM diagnoses, medications WHERE diagnoses.chart_id = medications.chart_id AND diagnosis=? GROUP BY drug_name ORDER BY COUNT(*)", (diagnosis,))
+def listMedicationsForDiagnosis(diagnoses):
+    c.execute("SELECT drug_name, COUNT(*) as frequency FROM diagnoses, medications WHERE diagnoses.chart_id = medications.chart_id AND diagnoses=? GROUP BY drug_name ORDER BY COUNT(*)", (diagnoses,))
     return c.fetchall()
 
 def listDiagnosesMadeBeforePrescribingDrug(drug_name):
-    c.execute("SELECT DISTINCT diagnosis FROM diagnoses, medications WHERE diagnoses.chart_id = medications.chart_id AND ddate < mdate AND drug_name=?", (drug_name,))
+    c.execute("SELECT DISTINCT diagnoses FROM diagnoses, medications WHERE diagnoses.chart_id = medications.chart_id AND ddate < mdate AND drug_name=?", (drug_name,))
     return c.fetchall()

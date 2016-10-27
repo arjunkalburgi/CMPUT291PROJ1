@@ -18,7 +18,7 @@ class CareStaff:
         charts = getChartsForPatient(patient)
         if len(charts) == 0:
             print 'No results!'
-            return
+            return "no_patient"
         for idx, row in enumerate(charts):
             print 'Chart ' + str(idx + 1) + ':'
             printRow(row)
@@ -28,6 +28,7 @@ class CareStaff:
         symptoms = symptomsForPatientAndChart(patient, chart_id)
         diagnoses = diagnosesForPatientAndChart(patient, chart_id)
         medications = medicationsForPatientAndChart(patient, chart_id)
+        printed = false
         for idx, row in enumerate(symptoms):
             print 'Symptom ' + str(idx + 1) + ':'
             printRow(row)
@@ -37,6 +38,9 @@ class CareStaff:
         for idx, row in enumerate(medications):
             print 'Medication ' + str(idx + 1) + ':'
             printRow(row)
+            printed = true
+        return printed
+
 
     # Doctor Q2
     def addSymptom(self, hcno, chart_id, staff_id, symptom):

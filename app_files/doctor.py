@@ -1,5 +1,4 @@
 from .classes import Doctor
-from .database import *
 
 def getChartsFlow(doc): 
 	patient = raw_input("What patient are you working with today? (hcno)")

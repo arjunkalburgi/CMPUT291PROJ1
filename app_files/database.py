@@ -1,6 +1,5 @@
 import sys
 import sqlite3
-from classes import *
 from time import strftime
 
 conn = None # global for db connection
@@ -29,19 +28,19 @@ def getUser(username, password):
     return c.fetchone()
 
 def getChartsForPatient(patient):
-    c.execute("SELECT * FROM patients, charts WHERE patients.hcno = charts.hcno AND name=? ORDER BY adate", patient)
+    c.execute("SELECT * FROM patients, charts WHERE patients.hcno = charts.hcno AND patients.hcno=? ORDER BY adate", (patient,))
     return c.fetchall()
 
 def symptomsForPatientAndChart(hcno, chart_id):
-    c.execute("SELECT * FROM symptoms WHERE hcno=? AND chart_id=?", (hcno, chart_id))
+    c.execute("SELECT * FROM symptoms WHERE hcno=? AND chart_id=? ORDER BY obs_date", (hcno, chart_id))
     return c.fetchall()
 
 def diagnosesForPatientAndChart(hcno, chart_id):
-    c.execute("SELECT * FROM diagnoses WHERE hcno=? AND chart_id=?", (hcno, chart_id))
+    c.execute("SELECT * FROM diagnoses WHERE hcno=? AND chart_id=? ORDER BY ddate", (hcno, chart_id))
     return c.fetchall()
 
 def medicationsForPatientAndChart(hcno, chart_id):
-    c.execute("SELECT * FROM medications WHERE hcno=? AND chart_id=?", (hcno, chart_id))
+    c.execute("SELECT * FROM medications WHERE hcno=? AND chart_id=? ORDER BY mdate", (hcno, chart_id))
     return c.fetchall()
 
 def addSymptomToChart(hcno, chart_id, staff_id, symptom):
@@ -55,6 +54,10 @@ def addDiagnosisToChart(hcno, chart_id, staff_id, diagnosis):
 def isMedicationAmountValid(drug_name, amount, age_group):
     c.execute("SELECT * FROM dosage WHERE drug_name=? AND age_group=? AND sug_amount >= ?", (drug_name, age_group, amount))
     return c.fetchone() != None
+
+def getValidMedicationAmount(drug_name, age_group):
+    c.execute("SELECT * FROM dosage WHERE drug_name=? AND age_group=?", (drug_name, age_group))
+    return c.fetchone()
 
 def isPatientAllergicToDrug(hcno, drug_name):
     c.execute("SELECT * FROM drugs WHERE hcno=? AND drug_name=?", (hcno, drug_name))
@@ -88,3 +91,23 @@ def createNewChartForPatient(hcno):
 def closeChartWithId(chart_id):
     c.execute("UPDATE charts SET edate=? WHERE chart_id=?", (getCurrentTime(), chart_id))
     conn.commit()
+
+def drugAmountForEachDoctor(start, end):
+    c.execute("SELECT name as DoctorName, drug_name, SUM(amount) as total_amount FROM staff, medications WHERE staff.staff_id = medications.staff_id GROUP BY name, drug_name AND start_med > ? AND start_med < ?", (start, end))
+    return c.fetchall()
+
+def drugAmountForEachCategory(start, end):
+    c.execute("SELECT category, drugs.drug_name, SUM(amount) as amount FROM drugs, medications WHERE drugs.drug_name = medications.drug_name AND mdate > ? AND mdate < ? GROUP BY category, drugs.drug_name", (start, end))
+    return c.fetchall()
+
+def totalAmountForEachCategory(start, end):
+    c.execute("SELECT category, SUM(amount) as total FROM drugs, medications WHERE drugs.drug_name = medications.drug_name AND mdate > ? AND mdate < ? GROUP BY category", (start, end))
+    return c.fetchall()
+
+def listMedicationsForDiagnosis(diagnosis):
+    c.execute("SELECT drug_name, COUNT(*) as frequency FROM diagnoses, medications WHERE diagnoses.chart_id = medications.chart_id AND diagnosis=? GROUP BY drug_name ORDER BY COUNT(*)", (diagnosis,))
+    return c.fetchall()
+
+def listDiagnosesMadeBeforePrescribingDrug(drug_name):
+    c.execute("SELECT DISTINCT diagnosis FROM diagnoses, medications WHERE diagnoses.chart_id = medications.chart_id AND ddate < mdate AND drug_name=?", (drug_name,))
+    return c.fetchall()

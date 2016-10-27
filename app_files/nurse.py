@@ -1,5 +1,5 @@
 from .classes import Nurse
-from .classes import database as db
+from . import database as db
 from .classes import login
 
 def getChartsFlow(nur): 

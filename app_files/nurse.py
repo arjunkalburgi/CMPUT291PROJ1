@@ -72,7 +72,7 @@ def main_nurse(n):
 		else:
 			print("That is not an option (e.g.: 1), please try again")
 
-	if action == "2:
+	if action == "2":
 		main_nurse(n)
 	else: 
 		print("Bye")

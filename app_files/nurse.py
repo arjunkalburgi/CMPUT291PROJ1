@@ -1,6 +1,6 @@
 from .classes import Nurse
 from . import database as db
-from . import login
+from .login import start
 
 def getChartsFlow(nur): 
 	patient = raw_input("What patient are you working with today? (hcno or 'new')")
@@ -76,7 +76,7 @@ def main_nurse(n):
 		main_nurse(n)
 	else: 
 		print("Bye")
-		login.start()
+		start()
 
 def flow(user):
 

@@ -18,6 +18,10 @@ To see app class structure, see:
 - [ ] implement user actions (actual class functions that will call sql queries)
 - [ ] implement sql queries (will access the db)
 - [ ] login encryption
+- [ ] nurse.py:line 19 -- return open chart's chart ID
+- [ ] nurse.py:line 8 -- weird new patient
+- [ ] nurse.py:line 32 -- new chart flow
+- [ ] doctor.py:line 29 -- add medication flow
 
 ## Full Spec
 https://eclass.srv.ualberta.ca/mod/page/view.php?id=2065436

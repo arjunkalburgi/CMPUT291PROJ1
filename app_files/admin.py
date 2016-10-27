@@ -1,34 +1,24 @@
 from .classes import AdminStaff
 
 def listDrugAmtForEachDoctorFlow(adm):
-	returnobj = adm.listDrugAmtForEachDoctor()
-	print("listtttt")
+	start = raw_input("What time would you like to begin your search with? ")
+	end = raw_input("What time would you like to end your search with? ")
+	adm.listDrugAmtForEachDoctor(start, end)
 
 def listDrugAmtForEachCategoryFlow(adm):
 	start = raw_input("What time would you like to begin your search with? ")
 	end = raw_input("What time would you like to end your search with? ")
-	returnobj = adm.listDrugAmtForEachCategory(start, end)
-	if returnobj == "bad_times":
-		print("Those times were unreadable, please try ____ format")
-		listDrugAmtForEachCategoryFlow(adm)
-	else:
-		print("listttt")
+	adm.listDrugAmtForEachCategory(start, end)
 
 def listMedicationsForDiagnosisFlow(adm):
 	diagnosis = raw_input("Which diagnosis would you like to search? ")
-	returnobj = adm.listMedicationsForDiagnosis(diagnosis)
-	if returnobj == "no_diagnosis":
+	if !adm.listMedicationsForDiagnosis(diagnosis):
 		print("That diagnosis is not in the database")
-	else:
-		print("listttt")
 
 def listDiagnosisesForDrugFlow(adm):
 	drug = raw_input("Which drug would you like to search? ")
-	returnobj = adm.listDiagnosisesForDrug(drug)
-	if returnobj == "no_drug":
-		print("That diagnosis is not in the database")
-	else:
-		print("listttt")
+	if !adm.listDiagnosisesForDrug(drug):
+		print("That drug is not in the database")
 
 def flow(user):
 

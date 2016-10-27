@@ -123,6 +123,10 @@ class AdminStaff():
         for idx, row in enumerate(result):
             print '-----------------------'
             printRow(row)
+        if result != None: 
+            return True
+        else: 
+            return False
 
     def listDiagnosesMadeBeforePrescribingDrug(self, drug_name):
         print 'Report: Diagnoses Made Before Prescribing ' + drug_name
@@ -130,3 +134,7 @@ class AdminStaff():
         for idx, row in enumerate(result):
             print '-----------------------'
             printRow(row)
+        if result != None: 
+            return True
+        else: 
+            return False

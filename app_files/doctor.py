@@ -1,4 +1,5 @@
 from .classes import Doctor
+from .classes import database as db
 
 def getChartsFlow(doc): 
 	patient = raw_input("What patient are you working with today? (hcno)")
@@ -12,6 +13,7 @@ def selectChart(doc, patient):
 	chartId = raw_input("Which chart would you like to open? (select id)")
 	if !doc.printChartEntries(patient, chartId): 
 		print("There was a problem, please type the chartid.")
+		selectChart(doc, patient)
 	return chartId
 
 def addSymptomsFlow(doc, patient, chart):
@@ -21,21 +23,38 @@ def addSymptomsFlow(doc, patient, chart):
 
 def addDiagnosisFlow(doc, patient, chart):
 	diagnosis = raw_input("Name the diagnosis:")
-	returnobj = doc.addDiagnosis(patient, chart, doc.id, diagnosis)
-	if returnobj == "no_patient":
-		print("That is not a patient in the database.")
-		addDiagnosisFlow(doc)
-	else:
-		print("Diagnosis has been added to the database.")
+	doc.addDiagnosis(patient, chart, doc.id, diagnosis)
+	print("Diagnosis has been added to the database.")
 
 def addMedicationFlow(doc, patient, chart):
-	medication = raw_input("Name the medication:")
-	returnobj = doc.addMedication(patient, medication)
-	if returnobj == "no_patient":
-		print("That is not a patient in the database.")
-		addMedicationFlow(doc)
-	else:
-		print("Medication has been added to the database.")
+	drug = raw_input("Name the drug for the medication: ")
+	amount = raw_input("How much would you like to prescribe? ")
+
+	# start_med, end_med, drug_name
+
+	# if doc.checkMedicationAmountValid(drug, amount, patient.age_group):
+		# print("Warning, that is above the recommended amount.") 
+		# rec = doc.getValidMedicationAmount(drug, patient.age_group) 
+		# print("the suggested amount is " + rec["sug_amount"]) 
+		# action = raw_input("\nWould you like to:\n\ 
+		# 	(1) Confirm your prescription\n \
+		# 	(2) Change your amount\n")
+		# if action == "2": 
+		# 	amount = raw_input("How much would you like to prescribe? ")
+
+	# if doc.checkPatientAllergicToDrug(patient, drug) or doc.checkInferredAllergyToDrug(patient, drug):
+		# print("Warning, there is an allergy to this drug.") 
+		# # allergic = patient allergic?
+		# print("The patient is allergic to " + allergic)
+		# if doc.checkInferredAllergyToDrug(patient, drug):
+			# print("... and is also allergic to " + inferredallergy)
+
+	start_med = raw_input("When would you like to start the medications? ")
+	end_med = raw_input("When would you like to end the medications? ")
+
+	# DOESN'T THIS NEED AMOUNT?
+	addMedication(patient, chart, doc.id, start_med, end_med, drug_name)
+	print("Medication has been added to the database.")
 
 def flow(user):
 
@@ -52,9 +71,9 @@ def flow(user):
 	while True:
 
 		action = raw_input("\nWhat would you like to do with this chart?\n\
-		(1) Report a patient's symptom\n \
-		(2) Report your diagnosis of a patient\n \
-		(3) Report your medication prescription to a patient\n \
+		(1) Report this patient's symptom\n \
+		(2) Report your diagnosis of this patient\n \
+		(3) Report your medication prescription for this patient\n \
 		(4) Logout\n")
 
 		if action == "1":

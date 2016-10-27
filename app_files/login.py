@@ -1,5 +1,8 @@
 import sys
 from .database import getUser
+import doctor
+import nurse 
+import admin
 
 def encrypt(s):
 	# r = ""

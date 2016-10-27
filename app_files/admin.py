@@ -58,4 +58,4 @@ def flow(user):
 			print("That is not an option, please try again")
 
 	print("Bye")
-	start()
+	return

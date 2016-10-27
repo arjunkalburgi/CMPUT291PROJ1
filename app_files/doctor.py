@@ -54,7 +54,7 @@ def addMedicationFlow(doc, patient, chart):
 	end_med = raw_input("When would you like to end the medications? ")
 
 	# DOESN'T THIS NEED AMOUNT?
-	addMedication(patient, chart, doc.id, start_med, end_med, drug_name)
+	doc.addMedication(patient, chart, doc.id, start_med, end_med, drug_name)
 	print("Medication has been added to the database.")
 
 def flow(user):
@@ -94,4 +94,4 @@ def flow(user):
 			print("That is not an option (e.g.: 1), please try again")
 
 	print("Bye")
-	start()
+	return

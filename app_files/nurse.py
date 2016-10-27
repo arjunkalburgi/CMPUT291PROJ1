@@ -76,7 +76,7 @@ def main_nurse(n):
 		main_nurse(n)
 	else: 
 		print("Bye")
-		start()
+		return
 
 def flow(user):
 
@@ -84,3 +84,4 @@ def flow(user):
 	print("let's do it, ", n.name)
 
 	main_nurse(n)
+	return

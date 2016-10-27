@@ -25,9 +25,9 @@ def start():
 	if user is not None:
 		if user['role'] == 'D':
 			d_flow(user)
-		if user['role'] == 'N':
+		elif user['role'] == 'N':
 			n_flow(user)
-		if user['role'] == 'A':
+		elif user['role'] == 'A':
 			a_flow(user)
 	else:
 		print('Invalid username or password! Please try again')

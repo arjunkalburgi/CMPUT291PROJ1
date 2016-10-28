@@ -116,5 +116,5 @@ def listMedicationsForDiagnosis(diagnoses):
     return c.fetchall()
 
 def listDiagnosesMadeBeforePrescribingDrug(drug_name):
-    c.execute("SELECT DISTINCT diagnoses FROM diagnoses, medications WHERE diagnoses.chart_id = medications.chart_id AND ddate < mdate AND drug_name=?", (drug_name,))
+    c.execute("SELECT DISTINCT diagnosis FROM diagnoses, medications WHERE diagnoses.chart_id = medications.chart_id AND ddate < mdate AND drug_name=?", (drug_name,))
     return c.fetchall()

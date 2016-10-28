@@ -23,7 +23,7 @@ def listDiagnosisesForDrugFlow(adm):
 def flow(user):
 
 	a = AdminStaff(user)
-	print("let's do it, ", a.name)
+	print "Welcome admin: " + a.name
 
 	while True:
 

@@ -26,7 +26,10 @@ def selectChart(nur, patient):
 			return newChartFlow(nur, patient)
 		else:
 	# return chart id
-			return chartId
+			if not nur.printChartEntries(patient["hcno"], chartId):
+				print("There was a problem, please type the chartid. ")
+			else:
+				return chartId
 
 def addSymptomsFlow(nur, patient, chart):
 	symptom = raw_input("Name the symptom: ")
@@ -81,7 +84,7 @@ def main_nurse(n):
 def flow(user):
 
 	n = Nurse(user)
-	print("let's do it, ", n.name)
+	print "Welcome nurse: " + n.name
 
 	main_nurse(n)
 	return

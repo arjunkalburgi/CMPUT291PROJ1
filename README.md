@@ -15,13 +15,13 @@ To see app class structure, see:
 - [x] figure out how to run sql queries from python
 - [x] finish class structure
 - [x] implement user flows (will call user actions)
-- [ ] implement user actions (actual class functions that will call sql queries)
+- [x] implement user actions (actual class functions that will call sql queries)
 - [ ] implement sql queries (will access the db)
 - [ ] login encryption
-- [ ] nurse.py:line 19 -- return open chart's chart ID
-- [ ] nurse.py:line 8 -- weird new patient
-- [ ] nurse.py:line 32 -- new chart flow
-- [ ] doctor.py:line 29 -- add medication flow
+- [x] nurse.py:line 19 -- return open chart's chart ID
+- [x] nurse.py:line 8 -- weird new patient
+- [x] nurse.py:line 32 -- new chart flow
+- [x] doctor.py:line 29 -- add medication flow
 
 ## Full Spec
 https://eclass.srv.ualberta.ca/mod/page/view.php?id=2065436

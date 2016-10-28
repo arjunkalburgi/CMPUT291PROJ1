@@ -73,7 +73,7 @@ def inferredAllergy(hcno, drug_name):
     return c.fetchone()
 
 def addMedicationToChart(hcno, chart_id, staff_id, start_med, end_med, drug_name, amount):
-    c.execute("INSERT INTO diagnoses VALUES (?,?,?,?,?,?,?,?)", (hcno, chart_id, staff_id, getCurrentTime(), start_med, end_med, amount, drug_name))
+    c.execute("INSERT INTO medications VALUES (?,?,?,?,?,?,?,?)", (hcno, chart_id, staff_id, getCurrentTime(), start_med, end_med, amount, drug_name))
     conn.commit()
 
 def createPatient(hcno, name, age_group, address, phone, emg_phone):

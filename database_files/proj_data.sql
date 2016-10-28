@@ -1,15 +1,15 @@
 -- data from https://github.com/coltonbegert/291MiniProject/blob/master/a3-data.sql
 
 INSERT INTO staff  VALUES
-('14334', 'D', 'Phil McGraw', 'PugLove8', 'These Need Hashing'),
-('14479', 'D', 'Mehmet Oz', 'OzDaddy', 'ILoveFakeMedicine'),
-('14589', 'D', 'Henry Jekyll', 'X_jake_X', 'superman'),
-('37225', 'N', 'Nurse Joy', 'Joy1', 'Joy123'),
-('37698', 'N', 'Marge Houlihan', 'Houliha1', 'dogname'),
-('37195', 'N', 'Jackie Chan', 'Chan1', 'mustang'),
-('63185', 'A', 'Abraham Jeffers', 'Jericho', 'qwerty'),
-('63691', 'A', 'Howard Stern', 'Serious', 'letmein'),
-('63215', 'A', 'Paul Newman', 'Admin', 'password123');
+('14334', 'D', 'Phil McGraw', 'RwiNqxg:', 'Vjgug"Pggf"Jcujkpi'), --'PugLove8', 'These Need Hashing'),
+('14479', 'D', 'Mehmet Oz', 'Q|Fcff{', 'KNqxgHcmgOgfkekpg'), --'OzDaddy', 'ILoveFakeMedicine'),
+('14589', 'D', 'Henry Jekyll', 'ZalcmgaZ', 'uwrgtocp'), --'X_jake_X', 'superman'),
+('37225', 'N', 'Nurse Joy', 'Lq{3', 'Lq{345'), --'Joy1', 'Joy123'),
+('37698', 'N', 'Marge Houlihan', 'Jqwnkjc3', 'fqipcog'), --'Houliha1', 'dogname'),
+('37195', 'N', 'Jackie Chan', 'Ejcp3', 'owuvcpi'), --'Chan1', 'mustang'),
+('63185', 'A', 'Abraham Jeffers', 'Lgtkejq', 'sygtv{'), --'Jericho', 'qwerty'),
+('63691', 'A', 'Howard Stern', 'Ugtkqwu', 'ngvogkp'), --'Serious', 'letmein'),
+('63215', 'A', 'Paul Newman', 'Cfokp', 'rcuuyqtf345'); --'Admin', 'password123');
 
 INSERT INTO patients VALUES
 ('15384','Angelina Jolie','18-39','123-120 ST, Edmonton, Alberta','7801234567','7801234567'),

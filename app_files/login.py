@@ -5,11 +5,10 @@ from .nurse import flow as n_flow
 from .admin import flow as a_flow
 
 def encrypt(s):
-	# r = ""
-	# for char in s:
-	# 	r = r + chr(ord(char) + 2)
-	# return r
-	return s
+	r = ""
+	for char in s:
+		r = r + chr(ord(char) + 2)
+	return r
 
 def decrypt(s):
 	r = ""

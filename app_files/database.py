@@ -80,9 +80,12 @@ def createPatient(hcno, name, age_group, address, phone, emg_phone):
     c.execute("INSERT INTO diagnoses VALUES (?,?,?,?,?,?)", (hcno, name, age_group, address, phone, emg_phone))
     conn.commit()
 
+# returns the id of the open chart
 def isChartOpenForPatient(hcno):
     c.execute("SELECT * FROM charts WHERE hcno=? AND edate IS NULL", (hcno,))
-    return c.fetchone() != None
+    chart = c.fetchone()
+    if chart:
+        return chart['chart_id']
 
 # returns the id of the new chart
 def createNewChartForPatient(hcno):

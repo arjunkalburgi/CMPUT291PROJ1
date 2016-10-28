@@ -31,9 +31,7 @@ def addMedicationFlow(doc, patient, chart):
 	drug = raw_input("Name the drug for the medication: ")
 	amount = raw_input("How much would you like to prescribe? ")
 
-	# start_med, end_med, drug_name
-
-	if not doc.checkMedicationAmountValid(drug, amount, patient["age_group"]):
+	while not doc.checkMedicationAmountValid(drug, amount, patient["age_group"]):
 		print("Warning, that is above the recommended amount.")
 		rec = doc.getValidMedicationAmount(drug, patient["age_group"]) 
 		print "the suggested amount is " + str(rec["sug_amount"]) 
@@ -42,6 +40,8 @@ def addMedicationFlow(doc, patient, chart):
 			(2) Change your amount\n")
 		if action == "2": 
 			amount = raw_input("How much would you like to prescribe? ")
+		else: 
+			break
 
 	if doc.checkPatientAllergicToDrug(patient["hcno"], drug):
 		print("The patient is allergic to " + drug)

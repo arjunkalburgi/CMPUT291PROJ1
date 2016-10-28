@@ -2,7 +2,7 @@ from .classes import Nurse
 from . import database as db
 # from .login import start
 
-def getChartsFlow(nur): 
+def getPatientFlow(nur): 
 	patient_hcno = raw_input("What patient are you working with today? (hcno) ")
 	if nur.getPatient(patient_hcno) is not None: 
 		nur.newPatient(patient_hcno, raw_input("Patient name: "), raw_input("Patient age group: "), raw_input("Patient address: "), raw_input("Patient phone number: "), raw_input("Patient emergency number: "))
@@ -10,10 +10,11 @@ def getChartsFlow(nur):
 		returnobj = nur.getCharts(patient_hcno)
 		if returnobj == "no_patient":
 			print("That is not a patient's hcno that we have registered. Please use hcno for the patient.")
-			patient_hcno = getChartsFlow(nur)
+			patient_hcno = getPatientFlow(nur)
 	return patient_hcno
 
 def newChartFlow(nur, patient):
+	print "New chart has been selected"
 	return nur.newChart(patient["hcno"], patient["name"], patient["age_group"], patient["address"], patient["phone"], patient["emg_phone"])
 
 def selectChart(nur, patient): 
@@ -42,7 +43,7 @@ def closeChartFlow(nur, chart):
 
 def main_nurse(n):
 	# select a patient and show their charts
-	patient_hcno = getChartsFlow(n)
+	patient_hcno = getPatientFlow(n)
 	patient = d.getPatient(patient_hcno)
 	
 	# select chart 

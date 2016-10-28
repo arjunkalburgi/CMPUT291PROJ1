@@ -33,7 +33,7 @@ def addMedicationFlow(doc, patient, chart):
 
 	# start_med, end_med, drug_name
 
-	if doc.checkMedicationAmountValid(drug, amount, patient["age_group"]):
+	if not doc.checkMedicationAmountValid(drug, amount, patient["age_group"]):
 		print("Warning, that is above the recommended amount.")
 		rec = doc.getValidMedicationAmount(drug, patient["age_group"]) 
 		print "the suggested amount is " + str(rec["sug_amount"]) 
@@ -52,7 +52,7 @@ def addMedicationFlow(doc, patient, chart):
 	start_med = raw_input("When would you like to start the medications? (YYYY-MM-DD HH:MM:SS) ")
 	end_med = raw_input("When would you like to end the medications? (YYYY-MM-DD HH:MM:SS) ")
 
-	doc.addMedication(patient["hcno"], chart, doc.id, start_med, end_med, drug_name, amount)
+	doc.addMedication(patient["hcno"], chart, doc.id, start_med, end_med, drug, amount)
 	print("Medication has been added to the database.")
 
 def flow(user):

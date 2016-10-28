@@ -41,7 +41,7 @@ class CareStaff:
             printed = True
         return printed
 
-    def getPatient(hcno):
+    def getPatient(self, hcno):
         return getPatientWithHcno(hcno)
 
     # Doctor Q2
@@ -85,8 +85,11 @@ class Nurse(CareStaff):
         return super(Nurse, self).introduce() + "Nurse"
 
     # returns the new chart's id
-    def newChart(self, hcno, name, age_group, address, phone, emg_phone):
-        return createPatient(hcno, name, age_group, address, phone, emg_phone)
+    def newChart(self, hcno):
+        return createNewChartForPatient(hcno)
+
+    def newPatient(self, hcno, name, age_group, address, phone, emg_phone):
+        createPatient(hcno, name, age_group, address, phone, emg_phone)
 
     def checkIfPatientHasOpenChart(self, hcno):
         return isChartOpenForPatient(hcno)

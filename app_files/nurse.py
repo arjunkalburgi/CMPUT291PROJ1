@@ -45,7 +45,6 @@ def main_nurse(n):
 
 	# select chart
 	chartId = selectChart(n, patient)
-	print(chartId)
 	n.printChartEntries(patient["hcno"], chartId)
 
 	action = ""
@@ -53,22 +52,27 @@ def main_nurse(n):
 		action = raw_input("\nWhat would you like to do with this chart?\n\
 		(1) Report this patient's symptom\n \
 		(2) Close the patient's chart\n \
+		(3) Open a new chart\n \
 		(3) Logout\n")
 
 		if action == "1":
 			addSymptomsFlow(n, patient_hcno, chartId) # flow to get patient and insert symptom
+			n.printChartEntries(patient["hcno"], chartId)
 
 		elif action == "2":
 			closeChartFlow(n, chartId) # flow to get patient and insert medication
 
 		elif action == "3":
+			break;
+
+		elif action == "4":
 			# logout the user
 			break;
 
 		else:
 			print("That is not an option (e.g.: 1), please try again")
 
-	if action == "2":
+	if action == "3":
 		main_nurse(n)
 	else:
 		print("Bye")

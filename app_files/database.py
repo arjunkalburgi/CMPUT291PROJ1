@@ -27,6 +27,13 @@ def getUser(username, password):
     c.execute("SELECT * FROM staff WHERE login=? AND password=?", (username, password))
     return c.fetchone()
 
+def createUser(role, name, login, password):
+    c.execute("SELECT MAX(staff_id) as max_id FROM patients")
+    new_id = int(c.fetchone()['max_id']) + 1
+    c.execute("INSERT INTO charts VALUES (?,?,?,?)", (new_id, hcno, getCurrentTime(), None))
+    conn.commit()
+    return new_id
+
 def getChartsForPatient(patient):
     c.execute("SELECT * FROM patients, charts WHERE patients.hcno = charts.hcno AND patients.hcno=? ORDER BY adate", (patient,))
     return c.fetchall()
@@ -77,7 +84,7 @@ def addMedicationToChart(hcno, chart_id, staff_id, start_med, end_med, drug_name
     conn.commit()
 
 def createPatient(hcno, name, age_group, address, phone, emg_phone):
-    c.execute("INSERT INTO diagnoses VALUES (?,?,?,?,?,?)", (hcno, name, age_group, address, phone, emg_phone))
+    c.execute("INSERT INTO patients VALUES (?,?,?,?,?,?)", (hcno, name, age_group, address, phone, emg_phone))
     conn.commit()
 
 # returns the id of the open chart
@@ -112,7 +119,7 @@ def totalAmountForEachCategory(start, end):
     return c.fetchall()
 
 def listMedicationsForDiagnosis(diagnoses):
-    c.execute("SELECT drug_name, COUNT(*) as frequency FROM diagnoses, medications WHERE diagnoses.chart_id = medications.chart_id AND diagnoses=? GROUP BY drug_name ORDER BY COUNT(*)", diagnoses)
+    c.execute("SELECT drug_name, COUNT(*) as frequency FROM diagnoses, medications WHERE diagnoses.chart_id = medications.chart_id AND diagnosis=? GROUP BY drug_name ORDER BY COUNT(*)", (diagnoses,))
     return c.fetchall()
 
 def listDiagnosesMadeBeforePrescribingDrug(drug_name):

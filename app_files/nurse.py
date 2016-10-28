@@ -11,7 +11,7 @@ def getPatientFlow(nur):
 
 def newChartFlow(nur, patient):
 	print "New chart has been selected"
-	return nur.newChart(patient["hcno"], patient["name"], patient["age_group"], patient["address"], patient["phone"], patient["emg_phone"])
+	return nur.newChart(patient["hcno"])
 
 def selectChart(nur, patient):
 	if nur.checkIfPatientHasOpenChart(patient["hcno"]) is not None:
@@ -23,7 +23,7 @@ def selectChart(nur, patient):
 		if chartId == "new":
 			return newChartFlow(nur, patient)
 		else:
-			if not nur.printChartEntries(patient, chartId):
+			if not nur.printChartEntries(patient["hcno"], chartId):
 				print("There was a problem, please type the chartid.")
 			else:
 				return chartId
@@ -76,7 +76,7 @@ def main_nurse(n):
 def flow(user):
 
 	n = Nurse(user)
-	print("let's do it, ", n.name)
+	print "Welcome nurse: " + n.name
 
 	main_nurse(n)
 	return

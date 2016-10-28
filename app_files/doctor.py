@@ -2,7 +2,7 @@ from .classes import Doctor
 from . import database as db
 # from .login import start
 
-def getChartsFlow(doc): 
+def getChartsFlow(doc):
 	patient_hcno = raw_input("What patient are you working with today? (hcno) ")
 	returnobj = doc.getCharts(patient_hcno)
 	if returnobj == "no_patient":
@@ -10,9 +10,9 @@ def getChartsFlow(doc):
 		patient_hcno = getChartsFlow(doc)
 	return patient_hcno
 
-def selectChart(doc, patient): 
+def selectChart(doc, patient):
 	chartId = raw_input("Which chart would you like to open? (select id) ")
-	if not doc.printChartEntries(patient, chartId): 
+	if not doc.printChartEntries(patient, chartId):
 		print("There was a problem, please type the chartid. ")
 		selectChart(doc, patient)
 	return chartId
@@ -35,12 +35,12 @@ def addMedicationFlow(doc, patient, chart):
 
 	if not doc.checkMedicationAmountValid(drug, amount, patient["age_group"]):
 		print("Warning, that is above the recommended amount.")
-		rec = doc.getValidMedicationAmount(drug, patient["age_group"]) 
-		print "the suggested amount is " + str(rec["sug_amount"]) 
+		rec = doc.getValidMedicationAmount(drug, patient["age_group"])
+		print "the suggested amount is " + str(rec["sug_amount"])
 		action = raw_input("\nWould you like to:\n \
 			(1) Confirm your prescription\n \
 			(2) Change your amount\n")
-		if action == "2": 
+		if action == "2":
 			amount = raw_input("How much would you like to prescribe? ")
 
 	if doc.checkPatientAllergicToDrug(patient["hcno"], drug):
@@ -58,13 +58,13 @@ def addMedicationFlow(doc, patient, chart):
 def flow(user):
 
 	d = Doctor(user)
-	print("let's do it, ", d.name)
+	print "Welcome doctor: " + d.name
 
 	# select a patient and show their charts
 	patient_hcno = getChartsFlow(d)
 	patient = d.getPatient(patient_hcno)
-	
-	# select chart 
+
+	# select chart
 	chartId = selectChart(d, patient["hcno"])
 	print(chartId)
 

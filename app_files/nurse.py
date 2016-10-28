@@ -46,7 +46,7 @@ def main_nurse(n):
 	# select chart
 	chartId = selectChart(n, patient)
 	print(chartId)
-	nur.printChartEntries(patient["hcno"], chartId)
+	n.printChartEntries(patient["hcno"], chartId)
 
 	action = ""
 	while True:

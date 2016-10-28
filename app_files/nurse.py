@@ -4,7 +4,7 @@ from . import database as db
 
 def getPatientFlow(nur):
 	patient_hcno = raw_input("What patient are you working with today? (hcno) ")
-	if nur.getPatient(patient_hcno) is not None:
+	if nur.getPatient(patient_hcno) is None:
 		print "The patient with that hcno does not exist! Please create a new patient:"
 		nur.newPatient(patient_hcno, raw_input("Patient name: "), raw_input("Patient age group: "), raw_input("Patient address: "), raw_input("Patient phone number: "), raw_input("Patient emergency number: "))
 	return patient_hcno

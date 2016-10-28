@@ -51,7 +51,7 @@ def addDiagnosisToChart(hcno, chart_id, staff_id, diagnoses):
     c.execute("INSERT INTO diagnoses VALUES (?,?,?,?,?)", (hcno, chart_id, staff_id, getCurrentTime(), diagnoses))
     conn.commit()
 
-def getPatient(hcno):
+def getPatientWithHcno(hcno):
     c.execute("SELECT * FROM patients WHERE hcno=?", (hcno,))
     return c.fetchone()
 

@@ -41,6 +41,8 @@ class CareStaff:
             printed = True
         return printed
 
+    def getPatient(hcno):
+        return getPatientWithHcno(hcno)
 
     # Doctor Q2
     def addSymptom(self, hcno, chart_id, staff_id, symptom):
@@ -123,9 +125,9 @@ class AdminStaff():
         for idx, row in enumerate(result):
             print '-----------------------'
             printRow(row)
-        if result != None: 
+        if result != None:
             return True
-        else: 
+        else:
             return False
 
     def listDiagnosesMadeBeforePrescribingDrug(self, drug_name):
@@ -134,7 +136,7 @@ class AdminStaff():
         for idx, row in enumerate(result):
             print '-----------------------'
             printRow(row)
-        if result != None: 
+        if result != None:
             return True
-        else: 
+        else:
             return False

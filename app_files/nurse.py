@@ -11,7 +11,7 @@ def getPatientFlow(nur):
 
 def newChartFlow(nur, patient):
 	print "New chart has been selected"
-	return nur.newChart(patient["hcno"], patient["name"], patient["age_group"], patient["address"], patient["phone"], patient["emg_phone"])
+	return nur.newChart(patient["hcno"])
 
 def selectChart(nur, patient):
 	if nur.checkIfPatientHasOpenChart(patient["hcno"]) is not None:

@@ -37,7 +37,7 @@ def addMedicationFlow(doc, patient, chart):
 		print("Warning, that is above the recommended amount.")
 		rec = doc.getValidMedicationAmount(drug, patient["age_group"]) 
 		print("the suggested amount is " + rec["sug_amount"]) 
-		action = raw_input("\nWould you like to:\n\ 
+		action = raw_input("\nWould you like to:\n \
 			(1) Confirm your prescription\n \
 			(2) Change your amount\n")
 		if action == "2": 

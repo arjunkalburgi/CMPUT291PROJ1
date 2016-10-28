@@ -51,6 +51,10 @@ def addDiagnosisToChart(hcno, chart_id, staff_id, diagnoses):
     c.execute("INSERT INTO diagnoses VALUES (?,?,?,?,?)", (hcno, chart_id, staff_id, getCurrentTime(), diagnoses))
     conn.commit()
 
+def getPatient(hcno):
+    c.execute("SELECT * FROM patients WHERE hcno=?", (hcno,))
+    return c.fetchone()
+
 def isMedicationAmountValid(drug_name, amount, age_group):
     c.execute("SELECT * FROM dosage WHERE drug_name=? AND age_group=? AND sug_amount >= ?", (drug_name, age_group, amount))
     return c.fetchone() != None

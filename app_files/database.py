@@ -23,15 +23,27 @@ def dict_factory(cursor, row):
 def getCurrentTime():
     return strftime("%Y-%m-%d %H:%M:%S")
 
+def encrypt(s):
+	r = ""
+	for char in s:
+		r = r + chr(ord(char) + 0)
+	return r
+
 def getUser(username, password):
+    password = encrypt(password)
     c.execute("SELECT * FROM staff WHERE login=? AND password=?", (username, password))
     return c.fetchone()
 
 def createUser(role, name, login, password):
-    c.execute("SELECT MAX(staff_id) as max_id FROM patients")
-    new_id = int(c.fetchone()['max_id']) + 1
-    c.execute("INSERT INTO charts VALUES (?,?,?,?,?)", (staff_id, role, name, login, password))
+    password = encrypt(password)
+    c.execute("SELECT MAX(staff_id) as max_id FROM staff")
+    res = c.fetchone()
+    new_id = 0
+    if res:
+        new_id = int(res['max_id']) + 1
+    c.execute("INSERT INTO staff VALUES (?,?,?,?,?)", (new_id, role, name, login, password))
     conn.commit()
+    c.execute("SELECT * FROM staff WHERE staff_id=?", (new_id,))
     return new_id
 
 def getChartsForPatient(patient):
@@ -97,7 +109,10 @@ def isChartOpenForPatient(hcno):
 # returns the id of the new chart
 def createNewChartForPatient(hcno):
     c.execute("SELECT MAX(chart_id) as max_id FROM charts")
-    new_id = int(c.fetchone()['max_id']) + 1
+    res = c.fetchone()
+    new_id = 0
+    if res:
+        new_id = int(res['max_id']) + 1
     c.execute("INSERT INTO charts VALUES (?,?,?,?)", (new_id, hcno, getCurrentTime(), None))
     conn.commit()
     return new_id

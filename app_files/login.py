@@ -18,11 +18,6 @@ def decrypt(s):
 	return r
 
 def start():
-
-	action = raw_input("\nWelcome to the CMPUT 291 Hospital Records Program!\n\
-	(1) Type 1 to login\n \
-	(2) Type 2 to create a user\n")
-	
 	username = raw_input('Please login with your username: ')
 	password = raw_input('And password: ')
 

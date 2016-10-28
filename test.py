@@ -8,5 +8,11 @@ database.connectDB()
 
 user = getUser('PugLove8', 'These Need Hashing')
 admin = AdminStaff(user)
-print database.isChartOpenForPatient('79024')
-print database.listMedicationsForDiagnosis("Ebola")
+
+# Test Functions: uncomment to run
+
+# print database.isChartOpenForPatient('79024')
+# print database.listMedicationsForDiagnosis("Ebola")
+# print database.createNewChartForPatient('15384')
+# print database.isChartOpenForPatient('15384')
+database.createUser('D', 'Kevin', 'Kevin', 'WangPass')

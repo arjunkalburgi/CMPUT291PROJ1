@@ -68,8 +68,8 @@ def inferredAllergy(hcno, drug_name):
     c.excute("SELECT * FROM reportedallergies, inferredallergies WHERE hcno=? AND reportedallergies.drug_name = inferredallergies.alg AND inferredallergies.canbe_alg=?", (hcno, drug_name))
     return c.fetchone()
 
-def addMedicationToChart(hcno, chart_id, staff_id, start_med, end_med, drug_name):
-    c.execute("INSERT INTO diagnoses VALUES (?,?,?,?,?,?,?,?)", (hcno, chart_id, staff_id, getCurrentTime(), start_med, end_med, drug_name))
+def addMedicationToChart(hcno, chart_id, staff_id, start_med, end_med, drug_name, amount):
+    c.execute("INSERT INTO diagnoses VALUES (?,?,?,?,?,?,?,?)", (hcno, chart_id, staff_id, getCurrentTime(), start_med, end_med, amount, drug_name))
     conn.commit()
 
 def createPatient(hcno, name, age_group, address, phone, emg_phone):

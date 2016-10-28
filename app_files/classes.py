@@ -71,8 +71,8 @@ class Doctor(CareStaff):
     def checkInferredAllergyToDrug(self, hcno, drug_name):
         return inferredAllergy(hcno, drug_name)
 
-    def addMedication(self, hcno, chart_id, staff_id, start_med, end_med, drug_name):
-        addMedicationToChart(hcno, chart_id, staff_id, start_med, end_med, drug_name)
+    def addMedication(self, hcno, chart_id, staff_id, start_med, end_med, drug_name, amount):
+        addMedicationToChart(hcno, chart_id, staff_id, start_med, end_med, drug_name, amount)
 
 class Nurse(CareStaff):
     def __init__(self, usr):

@@ -32,9 +32,11 @@ class CareStaff:
         for idx, row in enumerate(symptoms):
             print 'Symptom ' + str(idx + 1) + ':'
             printRow(row)
+            printed = True
         for idx, row in enumerate(diagnoses):
             print 'Diagnosis ' + str(idx + 1) + ':'
             printRow(row)
+            printed = True
         for idx, row in enumerate(medications):
             print 'Medication ' + str(idx + 1) + ':'
             printRow(row)

@@ -53,7 +53,7 @@ def main_nurse(n):
 		(1) Report this patient's symptom\n \
 		(2) Close the patient's chart\n \
 		(3) Open a new chart\n \
-		(3) Logout\n")
+		(4) Logout\n")
 
 		if action == "1":
 			addSymptomsFlow(n, patient_hcno, chartId) # flow to get patient and insert symptom

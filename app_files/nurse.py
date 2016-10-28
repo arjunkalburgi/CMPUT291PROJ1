@@ -3,15 +3,22 @@ from . import database as db
 # from .login import start
 
 def getChartsFlow(nur): 
-	patient = raw_input("What patient are you working with today? (hcno or 'new') ")
-	if patient == "new": 
-		patient = nur.newChart(raw_input("Patient HCNO: "), raw_input("Patient name: "), raw_input("Patient age group: "), raw_input("Patient address: "), raw_input("Patient phone number: "), raw_input("Patient emergency number: "))
+	patient_hcno = raw_input("What patient are you working with today? (hcno) ")
+	if nur.getPatient(patient_hcno) is not None: 
+		# add new patient
+		nur.newChart(patient_hcno, raw_input("Patient name: "), raw_input("Patient age group: "), raw_input("Patient address: "), raw_input("Patient phone number: "), raw_input("Patient emergency number: "))
 	else: 
 		returnobj = nur.getCharts(patient)
 		if returnobj == "no_patient":
 			print("That is not a patient's hcno that we have registered. Please use hcno for the patient.")
 			patient = getChartsFlow(nur)
 	return patient
+
+def newChartFlow(nur, patient):
+	pass
+	# way to get patient info
+	# newChart(self, hcno, name, age_group, address, phone, emg_phone):
+	# NEED CHART ID
 
 def selectChart(nur, patient): 
 	if nur.checkIfPatientHasOpenChart(patient): 
@@ -29,12 +36,6 @@ def selectChart(nur, patient):
 			else: 
 				return chartId
 
-def newChartFlow(nur, patient):
-	pass
-	# way to get patient info
-	# newChart(self, hcno, name, age_group, address, phone, emg_phone):
-	# NEED CHART ID
-
 def addSymptomsFlow(nur, patient, chart):
 	symptom = raw_input("Name the symptom: ")
 	nur.addSymptom(patient, chart, nur.id, symptom)
@@ -46,10 +47,11 @@ def closeChartFlow(nur, chart):
 
 def main_nurse(n):
 	# select a patient and show their charts
-	patient = getChartsFlow(n)
+	patient_hcno = getChartsFlow(n)
+	patient = d.getPatient(patient_hcno)
 	
 	# select chart 
-	chartId = selectChart(n, patient)
+	chartId = selectChart(n, patient_hcno)
 	print(chartId)
 
 	action = ""
@@ -60,7 +62,7 @@ def main_nurse(n):
 		(3) Logout\n")
 
 		if action == "1":
-			addSymptomsFlow(n, patient, chartId) # flow to get patient and insert symptom
+			addSymptomsFlow(n, patient_hcno, chartId) # flow to get patient and insert symptom
 
 		elif action == "2":
 			closeChartFlow(n, chartId) # flow to get patient and insert medication

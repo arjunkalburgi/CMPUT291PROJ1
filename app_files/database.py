@@ -44,7 +44,7 @@ def createUser(role, name, login, password):
     c.execute("INSERT INTO staff VALUES (?,?,?,?,?)", (new_id, role, name, login, password))
     conn.commit()
     c.execute("SELECT * FROM staff WHERE staff_id=?", (new_id,))
-    return new_id
+    return c.fetchone()
 
 def getChartsForPatient(patient):
     c.execute("SELECT * FROM patients, charts WHERE patients.hcno = charts.hcno AND patients.hcno=? ORDER BY adate", (patient,))

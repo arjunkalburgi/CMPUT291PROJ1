@@ -6,11 +6,6 @@ def getPatientFlow(nur):
 	patient_hcno = raw_input("What patient are you working with today? (hcno) ")
 	if nur.getPatient(patient_hcno) is not None: 
 		nur.newPatient(patient_hcno, raw_input("Patient name: "), raw_input("Patient age group: "), raw_input("Patient address: "), raw_input("Patient phone number: "), raw_input("Patient emergency number: "))
-	else: 
-		returnobj = nur.getCharts(patient_hcno)
-		if returnobj == "no_patient":
-			print("That is not a patient's hcno that we have registered. Please use hcno for the patient.")
-			patient_hcno = getPatientFlow(nur)
 	return patient_hcno
 
 def newChartFlow(nur, patient):
@@ -44,7 +39,7 @@ def closeChartFlow(nur, chart):
 def main_nurse(n):
 	# select a patient and show their charts
 	patient_hcno = getPatientFlow(n)
-	patient = d.getPatient(patient_hcno)
+	patient = n.getPatient(patient_hcno)
 	
 	# select chart 
 	chartId = selectChart(n, patient)

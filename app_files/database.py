@@ -30,7 +30,7 @@ def getUser(username, password):
 def createUser(role, name, login, password):
     c.execute("SELECT MAX(staff_id) as max_id FROM patients")
     new_id = int(c.fetchone()['max_id']) + 1
-    c.execute("INSERT INTO charts VALUES (?,?,?,?)", (new_id, hcno, getCurrentTime(), None))
+    c.execute("INSERT INTO charts VALUES (?,?,?,?,?)", (staff_id, role, name, login, password))
     conn.commit()
     return new_id
 

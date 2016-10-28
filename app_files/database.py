@@ -64,12 +64,12 @@ def getValidMedicationAmount(drug_name, age_group):
     return c.fetchone()
 
 def isPatientAllergicToDrug(hcno, drug_name):
-    c.execute("SELECT * FROM drugs WHERE hcno=? AND drug_name=?", (hcno, drug_name))
+    c.execute("SELECT * FROM reportedallergies WHERE hcno=? AND drug_name=?", (hcno, drug_name))
     return c.fetchone() != None
 
 # returns tuple if patient has an inferred allergy to drug_name
 def inferredAllergy(hcno, drug_name):
-    c.excute("SELECT * FROM reportedallergies, inferredallergies WHERE hcno=? AND reportedallergies.drug_name = inferredallergies.alg AND inferredallergies.canbe_alg=?", (hcno, drug_name))
+    c.execute("SELECT * FROM reportedallergies, inferredallergies WHERE hcno=? AND reportedallergies.drug_name = inferredallergies.alg AND inferredallergies.canbe_alg=?", (hcno, drug_name))
     return c.fetchone()
 
 def addMedicationToChart(hcno, chart_id, staff_id, start_med, end_med, drug_name, amount):

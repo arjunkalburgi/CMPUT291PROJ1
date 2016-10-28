@@ -41,7 +41,7 @@ class CareStaff:
             printed = True
         return printed
 
-    def getPatient(hcno):
+    def getPatient(self, hcno):
         return getPatientWithHcno(hcno)
 
     # Doctor Q2

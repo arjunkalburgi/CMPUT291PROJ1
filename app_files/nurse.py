@@ -5,31 +5,26 @@ from . import database as db
 def getChartsFlow(nur): 
 	patient_hcno = raw_input("What patient are you working with today? (hcno) ")
 	if nur.getPatient(patient_hcno) is not None: 
-		# add new patient
-		nur.newChart(patient_hcno, raw_input("Patient name: "), raw_input("Patient age group: "), raw_input("Patient address: "), raw_input("Patient phone number: "), raw_input("Patient emergency number: "))
+		nur.newPatient(patient_hcno, raw_input("Patient name: "), raw_input("Patient age group: "), raw_input("Patient address: "), raw_input("Patient phone number: "), raw_input("Patient emergency number: "))
 	else: 
-		returnobj = nur.getCharts(patient)
+		returnobj = nur.getCharts(patient_hcno)
 		if returnobj == "no_patient":
 			print("That is not a patient's hcno that we have registered. Please use hcno for the patient.")
-			patient = getChartsFlow(nur)
-	return patient
+			patient_hcno = getChartsFlow(nur)
+	return patient_hcno
 
 def newChartFlow(nur, patient):
-	pass
-	# way to get patient info
-	# newChart(self, hcno, name, age_group, address, phone, emg_phone):
-	# NEED CHART ID
+	return nur.newChart(patient["hcno"], patient["name"], patient["age_group"], patient["address"], patient["phone"], patient["emg_phone"])
 
 def selectChart(nur, patient): 
-	if nur.checkIfPatientHasOpenChart(patient): 
-		if raw_input("This patient already has an open chart, would you like to open it (y or n)? ") == "y":
-			pass
-			# return open chart's chart ID
+	if nur.checkIfPatientHasOpenChart(patient["hcno"]) is not None:
+		if raw_input("This patient already has an open chart (shown above), would you like to open it (y)? ") == "y":
+			return nur.checkIfPatientHasOpenChart(patient["hcno"])
 
 	while(True):
 		chartId = raw_input("Which chart would you like to open? (type chart's id or 'new') ")
 		if chartId == "new": 
-			newChartFlow(nur, patient)
+			return newChartFlow(nur, patient)
 		else: 
 			if not nur.printChartEntries(patient, chartId): 
 				print("There was a problem, please type the chartid.")
@@ -51,7 +46,7 @@ def main_nurse(n):
 	patient = d.getPatient(patient_hcno)
 	
 	# select chart 
-	chartId = selectChart(n, patient_hcno)
+	chartId = selectChart(n, patient)
 	print(chartId)
 
 	action = ""

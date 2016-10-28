@@ -1,3 +1,5 @@
+Kevin Wang (1424586) and Arjun Kalburgi (1388774)
+
 Hello, 
 
 # This is Mini Project 1 for CMPUT 291 Fall 2016.

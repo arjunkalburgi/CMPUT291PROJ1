@@ -70,7 +70,7 @@ def flow(user):
 
 	while True:
 
-		action = raw_input("\nWhat would you like to do with this chart?\n\
+		action = raw_input("\nWhat would you like to do with this chart?\n \
 		(1) Report this patient's symptom\n \
 		(2) Report your diagnosis of this patient\n \
 		(3) Report your medication prescription for this patient\n \

@@ -16,17 +16,17 @@ def newChartFlow(nur, patient):
 def selectChart(nur, patient):
 	if nur.checkIfPatientHasOpenChart(patient["hcno"]) is not None:
 		if raw_input("This patient already has an open chart (shown above), would you like to open it (y)? ") == "y":
+	# return open chart
 			return nur.checkIfPatientHasOpenChart(patient["hcno"])
 
 	while(True):
 		chartId = raw_input("Which chart would you like to open? (type chart's id or 'new') ")
 		if chartId == "new":
+	# return new chart id
 			return newChartFlow(nur, patient)
 		else:
-			if not nur.printChartEntries(patient, chartId):
-				print("There was a problem, please type the chartid.")
-			else:
-				return chartId
+	# return chart id
+			return chartId
 
 def addSymptomsFlow(nur, patient, chart):
 	symptom = raw_input("Name the symptom: ")
@@ -46,6 +46,7 @@ def main_nurse(n):
 	# select chart
 	chartId = selectChart(n, patient)
 	print(chartId)
+	nur.printChartEntries(patient["hcno"], chartId)
 
 	action = ""
 	while True:

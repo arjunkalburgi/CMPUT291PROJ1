@@ -43,16 +43,16 @@ def addMedicationFlow(doc, patient, chart):
 		if action == "2": 
 			amount = raw_input("How much would you like to prescribe? ")
 
-	if doc.checkPatientAllergicToDrug(patient, drug):
+	if doc.checkPatientAllergicToDrug(patient["hcno"], drug):
 		print("The patient is allergic to " + drug)
 
-	if doc.checkInferredAllergyToDrug(patient, drug) is not None:
-		print("... and is also allergic to " + doc.checkInferredAllergyToDrug(patient, drug))
+	if doc.checkInferredAllergyToDrug(patient["hcno"], drug) is not None:
+		print("... and is also allergic to " + doc.checkInferredAllergyToDrug(patient["hcno"], drug))
 
 	start_med = raw_input("When would you like to start the medications? (YYYY-MM-DD HH:MM:SS) ")
 	end_med = raw_input("When would you like to end the medications? (YYYY-MM-DD HH:MM:SS) ")
 
-	doc.addMedication(patient, chart, doc.id, start_med, end_med, drug_name, amount)
+	doc.addMedication(patient["hcno"], chart, doc.id, start_med, end_med, drug_name, amount)
 	print("Medication has been added to the database.")
 
 def flow(user):

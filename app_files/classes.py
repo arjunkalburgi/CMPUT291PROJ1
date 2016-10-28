@@ -17,7 +17,7 @@ class CareStaff:
         print 'Charts for patient with health care number ' + patient + ':'
         charts = getChartsForPatient(patient)
         if len(charts) == 0:
-            print 'No results!'
+            print 'No charts for patient ' + patient + '!'
             return "no_patient"
         for idx, row in enumerate(charts):
             print 'Chart ' + str(idx + 1) + ':'

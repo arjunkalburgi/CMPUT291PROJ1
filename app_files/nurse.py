@@ -2,9 +2,10 @@ from .classes import Nurse
 from . import database as db
 # from .login import start
 
-def getPatientFlow(nur): 
+def getPatientFlow(nur):
 	patient_hcno = raw_input("What patient are you working with today? (hcno) ")
-	if nur.getPatient(patient_hcno) is not None: 
+	if nur.getPatient(patient_hcno) is None:
+		print "The patient with that hcno does not exist! Please create a new patient:"
 		nur.newPatient(patient_hcno, raw_input("Patient name: "), raw_input("Patient age group: "), raw_input("Patient address: "), raw_input("Patient phone number: "), raw_input("Patient emergency number: "))
 	return patient_hcno
 
@@ -12,19 +13,19 @@ def newChartFlow(nur, patient):
 	print "New chart has been selected"
 	return nur.newChart(patient["hcno"], patient["name"], patient["age_group"], patient["address"], patient["phone"], patient["emg_phone"])
 
-def selectChart(nur, patient): 
+def selectChart(nur, patient):
 	if nur.checkIfPatientHasOpenChart(patient["hcno"]) is not None:
 		if raw_input("This patient already has an open chart (shown above), would you like to open it (y)? ") == "y":
 			return nur.checkIfPatientHasOpenChart(patient["hcno"])
 
 	while(True):
 		chartId = raw_input("Which chart would you like to open? (type chart's id or 'new') ")
-		if chartId == "new": 
+		if chartId == "new":
 			return newChartFlow(nur, patient)
-		else: 
-			if not nur.printChartEntries(patient, chartId): 
+		else:
+			if not nur.printChartEntries(patient, chartId):
 				print("There was a problem, please type the chartid.")
-			else: 
+			else:
 				return chartId
 
 def addSymptomsFlow(nur, patient, chart):
@@ -40,8 +41,9 @@ def main_nurse(n):
 	# select a patient and show their charts
 	patient_hcno = getPatientFlow(n)
 	patient = n.getPatient(patient_hcno)
-	
-	# select chart 
+	n.getCharts(patient["hcno"])
+
+	# select chart
 	chartId = selectChart(n, patient)
 	print(chartId)
 
@@ -67,7 +69,7 @@ def main_nurse(n):
 
 	if action == "2":
 		main_nurse(n)
-	else: 
+	else:
 		print("Bye")
 		return
 
